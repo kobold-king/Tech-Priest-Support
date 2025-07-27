@@ -39,10 +39,16 @@ def main():
     startup_rp()
 
     time.sleep(2)
-    user_input = input("What Machine  Spirit is ailing?\n")
-    response = f"You said: '{user_input}' — that's interesting!"
-
-    print(response)
+    choice = ("""
+            Select a catoagory of your querey.
+    __________________________________________________
+    | Consumer | Commercial/ Industrial | Specalized |
+    __________________________________________________
+    """)
+    user_input = input(f"{choice.center(40)}\n")
+    if user_input == "Consumer" or "consumer":
+        response = f"You said: '{user_input}' — that's interesting!"
+        print(response)
 
 
 
