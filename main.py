@@ -1,24 +1,31 @@
 from ascii_art import mechanicus, portrait
 import time
+from animations import binarypath_animation
+from pip._vendor.rich import print
+from choice_tree import choice_response, print_centered
+
+# Default Text Color
+GREEN = '\033[32m'  # ANSI code for green text
+RESET = '\033[0m'   # ANSI code to reset text formatting
 
 # Bootup Sequence to feel like this is a old slow program
 def startup_rp():
-    loading = """
+    print_centered("""
     +-----------------------------------------------+
     |      Loading Mechanicus Support Software      |
     +-----------------------------------------------+
-    """
-    centered_loading = loading.center(40)
-    print(centered_loading)
+    """)
     time.sleep(1)
 
     my_string = "..........."
     for char in my_string:
         print(char, end='', flush=True)
         time.sleep(0.3)
+    print("")
 
     # Mechanicus ascii art
-    print(mechanicus.center(40))
+    binarypath_animation(mechanicus)
+
     time.sleep(2)
 
     loaded = """
@@ -29,26 +36,31 @@ def startup_rp():
     """
     loaded_lines = loaded.splitlines()
     for line in loaded_lines:
-        print(line.center(40))
+        print_centered(line)
 
-    print(portrait, end=' ')
-    print("Blessings of the Omnissiah upon thee.")
+    print_centered(portrait + "Blessings of the Omnissiah upon thee.")
+
 
 def main():
-    #
     startup_rp()
 
     time.sleep(2)
     choice = ("""
             Select a catoagory of your querey.
     __________________________________________________
-    | Consumer | Commercial/ Industrial | Specalized |
+    | Consumer | Commercial/Industrial | Specialized |
     __________________________________________________
     """)
-    user_input = input(f"{choice.center(40)}\n")
-    if user_input == "Consumer" or "consumer":
-        response = f"You said: '{user_input}' — that's interesting!"
-        print(response)
+    print_centered(choice)
+
+    user_input = ""  # Initialize user_input to an empty string
+
+    while not user_input:  # Loop continues as long as user_input is empty
+        user_input = input("Select your catagory, varlet: ")
+        if not user_input:  # Check if input is still empty after prompt
+            print_centered("Your inability to follow instructions is disappointing yet not unexpected. Try again.")
+    time.sleep(2)
+    choice_response(user_input)
 
 
 
