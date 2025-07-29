@@ -1,5 +1,6 @@
 import shutil
 import time
+from item_list import item_list_check
 
 def print_centered(text):
     """Prints the given text centered in the terminal."""
@@ -76,9 +77,23 @@ def consumer_tree():
             Each toaster, each cog in the dishwasher, each ancient
             circuitry of the microwave – all deserve reverence and repair.
             """)
+            time.sleep(5)
             # kitchen item list
+            print_centered("""
+                Select the afflicted machine
+            ------------------------------------------------------
+            |  Refrigerator  |  Oven  |   Stove   |   Dishwasher  |
+            ------------------------------------------------------
+            |   Microwave  |   Freezer   |  Blender  |  Toaster   |
+            ------------------------------------------------------
+            | Coffee Maker | Food Processor | Mixer | Slow Cooker |
+            -------------------------------------------------------
+            |   Fryer  |  Garbage Disposal  |  Grill  |   Other   |
+            -------------------------------------------------------
+            """)
             kitchen_input = input("")
             # send to item list
+            item_list_check(kitchen_input)
 
         case "Laundry" | "laundry":
             print_centered("""

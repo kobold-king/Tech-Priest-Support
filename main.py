@@ -64,4 +64,16 @@ def main():
 
 
 
-main()
+
+
+if __name__ == "__main__":
+    restart_program = True
+    while restart_program:
+        main()
+        user_input = input("Do you want to restart? (yes/no): ").lower()
+        if user_input == "yes" or user_input == "y":
+            restart_program = True  # Or just continue as it's already True
+            print("\nRestarting...\n")
+        else:
+            restart_program = False
+            print("Exiting program.")
