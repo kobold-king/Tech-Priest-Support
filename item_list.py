@@ -1,5 +1,8 @@
 import time
 from animations import loading_anim
+import tkinter as tk
+from purity_seal_window import ImageWindow
+
 
 def item_list_check(item):
     loading_anim()
@@ -30,3 +33,19 @@ def toaster_response():
     three days time.
     """)
     time.sleep(2)
+
+
+    image_path = "./images/purity seal"
+
+    root = tk.Tk()
+    app = ImageWindow(root, image_path)
+    root.mainloop()
+
+def large_appliances():
+    pass
+
+def small_appliances():
+    pass
+
+def large_machnes():
+    pass

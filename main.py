@@ -10,12 +10,13 @@ RESET = '\033[0m'   # ANSI code to reset text formatting
 
 # Bootup Sequence to feel like this is a old slow program
 def startup_rp():
-    print_centered("""
+    intro = """
     +-----------------------------------------------+
     |      Loading Mechanicus Support Software      |
     +-----------------------------------------------+
-    """)
-    time.sleep(1)
+    """
+
+    line_print(intro)
 
     my_string = "..........."
     for char in my_string:
@@ -34,24 +35,30 @@ def startup_rp():
     |                  Initiating                   |
     +-----------------------------------------------+
     """
-    loaded_lines = loaded.splitlines()
-    for line in loaded_lines:
-        print_centered(line)
+    line_print(loaded)
 
     print_centered(portrait + "Blessings of the Omnissiah upon thee.")
+
+
+def line_print(text):
+    split_text = text.splitlines()
+    for line in split_text:
+        print_centered(line)
+        time.sleep(.5)
 
 
 def main():
     startup_rp()
 
     time.sleep(2)
-    choice = ("""
-            Select a catoagory of your querey.
+    choice = """
+    Select a catoagory of your querey.
     __________________________________________________
     | Consumer | Commercial/Industrial | Specialized |
     __________________________________________________
-    """)
-    print_centered(choice)
+    """
+
+    line_print(choice)
 
     user_input = ""  # Initialize user_input to an empty string
 
