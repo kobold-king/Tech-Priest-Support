@@ -46,11 +46,13 @@ class ImageWindow:
                 messagebox.showerror("Save Error", f"Could not save image: {e}")
 
     def print_image(self):
-        try:
-            # Use lp command to send the image to the default printer
-            subprocess.run(["lp", self.image_path], check=True)
-            messagebox.showinfo("Print", "Image sent to printer.")
-        except subprocess.CalledProcessError as e:
-            messagebox.showerror("Print Error", f"Failed to print image:\n{e}")
-        except Exception as e:
-            messagebox.showerror("Print Error", f"Unexpected error:\n{e}")
+        messagebox.showinfo("Print", "Not enabled yet")
+
+        # try:
+        #     # Use lp command to send the image to the default printer
+        #     subprocess.run(["lp", self.image_path], check=True)
+        #     messagebox.showinfo("Print", "Image sent to printer.")
+        # except subprocess.CalledProcessError as e:
+        #     messagebox.showerror("Print Error", f"Failed to print image:\n{e}")
+        # except Exception as e:
+        #     messagebox.showerror("Print Error", f"Unexpected error:\n{e}")
