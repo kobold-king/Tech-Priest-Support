@@ -11,6 +11,9 @@ def item_list_check(item):
     if s_item == "toaster":
         toaster_response()
 
+    elif s_item == "refrigerator" or "oven" or "stove" or "dishwasher":
+        large_appliances()
+
 def toaster_response():
     print("""
     By the Omnissiah’s capacitors... what... is this?
