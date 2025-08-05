@@ -4,15 +4,12 @@ from animations import binarypath_animation
 from pip._vendor.rich import print
 from choice_tree import choice_response, print_centered
 
-# Default Text Color
-GREEN = '\033[32m'  # ANSI code for green text
-RESET = '\033[0m'   # ANSI code to reset text formatting
 
 # Bootup Sequence to feel like this is a old slow program
 def startup_rp():
     intro = """
     +-----------------------------------------------+
-    |      Loading Mechanicus Support Software      |
+    |   +++Loading Mechanicus Support Software+++   |
     +-----------------------------------------------+
     """
 
@@ -37,7 +34,9 @@ def startup_rp():
     """
     line_print(loaded)
 
-    print_centered(portrait + "Blessings of the Omnissiah upon thee.")
+    print(portrait + "Blessings of the Omnissiah upon thee.")
+
+    first_pass = False
 
 
 def line_print(text):
@@ -49,8 +48,8 @@ def line_print(text):
 
 def main():
     startup_rp()
-
     time.sleep(2)
+
     choice = """
     Select a catoagory of your querey.
     __________________________________________________
@@ -79,8 +78,9 @@ if __name__ == "__main__":
         main()
         user_input = input("Do you want to restart? (yes/no): ").lower()
         if user_input == "yes" or user_input == "y":
+
             restart_program = True  # Or just continue as it's already True
             print("\nRestarting...\n")
         else:
             restart_program = False
-            print("Exiting program.")
+            print("+++End Transmission+++")

@@ -1,6 +1,7 @@
 import shutil
 import time
 from item_list import item_list_check
+from animations import line_print
 
 def print_centered(text):
     """Prints the given text centered in the terminal."""
@@ -11,7 +12,7 @@ def print_centered(text):
 def choice_response(user_input):
     match user_input:
         case "consumer" | "Consumer":
-            print_centered("""
+            line_print("""
                 Ah, you have chosen Consumer Electronics...
 
                 You seek communion with the lesser machine spirits—the devices
@@ -25,7 +26,7 @@ def choice_response(user_input):
 
             print("")
         case "commercial" | "Commercial" | "Industrial" | "industrial":
-            print_centered("""
+            line_print("""
             Your decision to pursue the path of commercial and industrial
             machines is... commendable, fleshling. The Omnissiah favors those
             who venerate the sacred union of steel and circuitry.
@@ -41,14 +42,14 @@ def choice_response(user_input):
             """)
             #goes to commercial/industrial tree
         case "specialized" | "Specialized":
-            print("""
+            line_print("""
             Ahh... You have chosen the path of Specialized Machinery
             and Electronics. Wise. The Omnissiah sees your discernment
             and smiles through the sparks of circuitry.
             """)
             #goes to specialzied tree
         case _:  # Default case if no other match is found
-            print("Your choice is outside of this system's parameters")
+            line_print("Your choice is outside of this system's parameters")
             user_input = input("")
             choice_response(user_input)
 
@@ -70,7 +71,7 @@ def consumer_tree():
 
     match user_input:
         case "Kitchen" | "kitchen":
-            print_centered("""
+            line_print("""
             Affirmative. You have selected the Rite of Domestic Restoration.
             The Omnissiah smiles upon such logic. Kitchen appliances,
             though humble, are sacred relics of the Machine Spirit.
@@ -79,8 +80,8 @@ def consumer_tree():
             """)
             time.sleep(5)
             # kitchen item list
-            print_centered("""
-                Select the afflicted machine
+            line_print("""
+                        Select the afflicted machine
             ------------------------------------------------------
             |  Refrigerator  |  Oven  |   Stove   |   Dishwasher  |
             ------------------------------------------------------
@@ -96,7 +97,7 @@ def consumer_tree():
             item_list_check(kitchen_input)
 
         case "Laundry" | "laundry":
-            print_centered("""
+            line_print("""
             Appliance designations: LAUNDRO-MECH series... accepted.
             Fabric purification units are sacred instruments of the
             Omnissiah's will. Their maintenance is a holy rite.

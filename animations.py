@@ -1,7 +1,8 @@
-from ascii_art import loading_1, loading_2, loading_3, loading_4
+
 from terminaltexteffects.effects.effect_waves import Waves
 from terminaltexteffects.effects.effect_binarypath import BinaryPath
 import time
+import shutil
 
 
 
@@ -30,8 +31,15 @@ def loading_anim():
         time.sleep(1)
         print("--loading--", end='\r', flush=True)
         time.sleep(1)
-        print("++loading++", end='\r', flush=True)
-        time.sleep(1)
-        print("--loading--", end='\r', flush=True)
-        time.sleep(1)
         count += 1
+
+def print_centered(text):
+    """Prints the given text centered in the terminal."""
+    terminal_width = shutil.get_terminal_size().columns
+    print(text.center(terminal_width))
+
+def line_print(text):
+    split_text = text.splitlines()
+    for line in split_text:
+        print_centered(line)
+        time.sleep(.5)
