@@ -55,7 +55,7 @@ def choice_response(user_input):
 
 def consumer_tree():
     consumer_list = """
-                Select a consumer catagory
+    Select a consumer catagory
     ------------------------------------------------------
     |     Kitchen     | Laundry |    Cleaning   | Health |
     ------------------------------------------------------
