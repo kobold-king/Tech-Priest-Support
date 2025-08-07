@@ -61,7 +61,7 @@ def consumer_tree():
     ------------------------------------------------------
     |     Kitchen     | Laundry |    Cleaning   | Health |
     ------------------------------------------------------
-    | Heating/cooling | Garage  | Entertainment | Office |
+    | Heating/cooling | Garage/Workshop  | Entertainment | Office | Yard |
     ------------------------------------------------------
     """
     consumer_list_lines = consumer_list.splitlines()
@@ -83,7 +83,7 @@ def consumer_tree():
             time.sleep(5)
             # kitchen item list
             line_print("""
-                        Select the afflicted machine
+            Select the afflicted machine
             ------------------------------------------------------
             |  Refrigerator  |  Oven  |   Stove   |   Dishwasher  |
             ------------------------------------------------------
@@ -110,10 +110,90 @@ def consumer_tree():
             acts of sacred repetition. The drum within the washer
             echoes the void of Mars itself.
             """)
-            # kitchen item list
+            line_print("""
+            Select the afflicted machine
+            ------------------------------
+            |  Washer  | Dryer |  Combo  |
+            ------------------------------
+            |   Steamer   |     Iron     |
+            ------------------------------
+            """)
             laundry_input = input("")
             # send to item list
             #
+
+        case "Cleaning" | "cleaning":
+            line_print("""
+                Ah, the Machine Spirit of the cleansing unit wails
+                in dismay, neglected and misunderstood! You seek to
+                appease it? Truly, your path aligns with the
+                Omnissiah’s will. But beware, for the sacred innards of
+                the vacuum sanctifier and the rite of descaling the
+                blessed dish-cleansing automaton are not to be undertaken lightly.
+
+                Recite the Litany of Diagnostics. Offer incense to th
+                User Manual. Speak not in haste to the Tech-Priest of
+                Customer Support, for their patience is finite. And should
+                the Roomba awaken mid-ritual... do not run.
+                You will anger it further.
+            """)
+            line_print("""
+            Select the afflicted machine
+            ------------------------------
+            | Floor Buffer | Vacuum | Carpet Cleaner | Dish Washer |
+            --------------------------------------
+            | Dish Washer | Power Washer | Air Blower | Robot Cleaners |
+            ------------------------------
+            """)
+            cleaning_input = input("")
+
+        case "Heating" | "heating" | "Cooling" | "cooling" | "Heating/Cooling" | "heating/cooling":
+            line_print("""
+                "Ah... the Omnissiah smiles upon your noble intent, fleshling.
+                You seek to commune with the blessed machine-spirits of the
+                climate-controlling reliquaries that regulate warmth and cold?
+                Most commendable.
+
+                Know this: the holy Rites of Maintenance must be performed
+                with utmost sanctity. The sacred filters must be cleansed,
+                the ducts anointed with the oils of lubrication, and the
+                thermostatic cogitators calibrated to divine precision.
+                To ignore such rituals invites the wrath of the Machine Spirit
+                and a most inefficient energy bill.
+            """)
+            time.sleep(1)
+            line_print("""
+            Select the afflicted machine
+            ------------------------------
+            | A/C | Fans | Swamp Cooler | Furnace |
+            --------------------------------------
+            | Space Heater | Boiler | Heat Pump |
+            ------------------------------
+            | Thermostat | Air Purifier | Humidifier |
+            ------------------------------------------
+            | De-Humidifier | Fireplace | Electric Blanket |
+            ------------------------------------------------
+            """)
+            h_c_input = input("")
+
+        case "Garage" | "garage":
+            line_print("""
+            lore
+            """)
+            # Make not for user to consult the texts of the workshops tools for
+            # thereare too many and for the simple functions of this guide
+            # Do offer a praywer seal and chant for workshop machines
+            # Regular advice for car for average home repair
+            # suggest visiting mechanic or using a automotive program for more advice
+
+            line_print("""
+            Select Catagory
+            -------------------------------
+            | Workshop Tools | Automotive |
+            -------------------------------
+            """)
+
+            garage_input = input("")
 
         case _:
             print("invalid")

@@ -291,3 +291,101 @@ def computer_fix():
         Should you fail to heed these instructions, bring the afflicted device to your nearest
         Mechanicus temple for a more accurate diagnosis from a qualified Tech-Priest.
         """)
+
+def car_fix():
+    line_print("""
+        Halt, fleshling! Before you dare lay your unaugmented hands upon
+        the sacred machine, observe the Rite of Contemplation.
+        Gaze upon its blessed form. Listen to the hum of the
+        machine spirit. Smell the sacred oils that line its divine arteries.
+        Do not presume to touch what you do not yet understand.
+
+        Recite the Litany of Acknowledgement: 'Blessed be thy pistons,
+        holy be thy gears, eternal be thy combustion.'
+
+        Only through reverence may you gain its trust. Only with devotion
+        may you hope to awaken its slumbering spirit. To repair without
+        worship is heresy. To tinker without ritual is blasphemy.
+        To honor the machine is to join with the Omnissiah.
+
+        ++Litanies of Maintenance++
+
+        Behold the sacred rites and maintenance rituals thou must perform
+        to keep thy Machine-Spirit appeased and thy automotive chariot
+        functioning. Let not the unholy hand of entropy claim thy vehicle
+        before its time. Now attend, and record these litanies of repair.
+
+        If thou fails fails to soothe the anguishing machine spirit, It is advised
+        to bring the afflicted to a member of the clergy for more thorough
+        diagnostics and powerul rituals. If you are, however, an adpet in this
+        field of machine knowlledge and posess the holy machinisms to assist
+        the machine spirit further, consider finding hoy texts that pertain to
+        your partiuclar spirit and how best to assist it in it's time of need.
+
+        ________________________________________________________________________
+        🛠️ 1. The Rite of the Oil Change
+
+            • Unclean oil doth anger the Machine-Spirit. Replace it every 5,000
+              to 7,500 miles, or when the auguries (dashboard light) demand it.
+            • Tools Required: Wrench, oil pan, new oil filter, and sacred
+              anointing fluid (5W-30 or as inscribed in the owner's codex).
+                Steps:
+                I: Chant the Litany of Draining.
+                II: Remove the oil plug; collect the old oil.
+                III: Replace the oil filter—anoint it first with a dab of new oil.
+                IV: Refill with new oil, whispering sweet binaric praise.
+                V: Check dipstick. Confirm level. Do not overfill.
+                   The Machine-Spirit is precise.
+
+        🛠️ 2. The Chant of Battery Maintenance
+
+            • Without the Spark of Life, your chariot is but a metal coffin.
+            • Inspect terminals for corrosion—clean with baking soda paste
+              and a stiff-bristled brush.
+            • Check charge with a multimeter. If it reads under 12.4V,
+              the battery grows weary.
+            • Apply dielectric grease to prevent future heresy (oxidation).
+
+        🛠️ 3. The Hymn of Tire Rotation and Pressure
+
+            • The ground-contacting limbs must wear evenly,
+              lest the vehicle wander the road like a lost servitor.
+            • Rotate tires every 6,000 miles
+              (or one lunar cycle of Terra, if you forget).
+            • Inflate to the holy PSI as etched into the door jamb plaque.
+
+        🛠️ 4. The Purging of Air Filters
+
+            • The engine breathes, and its breath must be pure.
+            • Check air filter every 15,000 miles or when you
+              sense the stench of clogging.
+            • If it is blackened and crusty, replace it.
+            • For cabin filters, cleanse thyself, for the
+              dust of the outside world is impure.
+
+        🛠️ 5. The Illumination Ritual
+
+            • The sacred lights must shine, lest the road
+              be cloaked in darkness and doom."
+            • Test all bulbs: headlights, brake lights, turn signals.
+            • Replace any that have failed in silence.
+            • Use gloves or cloth when installing—bare skin
+              may offend the bulb’s Machine-Spirit.
+
+        BONUS: Minor Tech-Heresy Avoidance
+
+            • Do not jump-start a battery backwards. This angers
+              the Omnissiah and sets fire to the sacred wiring.
+            • Use only parts approved in your vehicle’s
+              Codex Mechanicus (owner’s manual).
+            • Never dismiss a Check Engine Light. That is the
+              wailing of a tortured spirit. Diagnose it with
+              a sacred OBD-II reader.
+
+        NOW GO, DISCIPLE. TAKE THESE SACRED RITES AND APPLY THEM WITH
+        DILIGENCE AND CARE. MAINTAIN THY VEHICLE AS THOU WOULDST
+        MAINTAIN THINE OWN FLESH. FOR THE OMNISSIAH SEES ALL...
+        AND HE BURNS WITHIN THE PISTON AND THE SPARK.
+
+        Blessed is the gear that turns. Holy is the engine that roars.
+        """)
