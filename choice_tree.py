@@ -2,6 +2,7 @@ import shutil
 import time
 from item_list import item_list_check
 from animations import line_print
+from ascii_art import error
 
 def print_centered(text):
     """Prints the given text centered in the terminal."""
@@ -40,7 +41,8 @@ def choice_response(user_input):
             capacitor correctly placed, each motor aligned to perfection —
             you bring honor to the Cult Mechanicus."
             """)
-            #goes to commercial/industrial tree
+            commercial_tree()
+
         case "specialized" | "Specialized":
             line_print("""
             Ahh... You have chosen the path of Specialized Machinery
@@ -111,7 +113,24 @@ def consumer_tree():
             # kitchen item list
             laundry_input = input("")
             # send to item list
+            #
 
         case _:
             print("invalid")
             consumer_tree()
+
+def commercial_tree():
+    line_print(error)
+    commercial__list = """
+    Select a consumer catagory
+    ------------------------------------------------------
+    |                        EMPTY                       |
+    ------------------------------------------------------
+    """
+    line_print(commercial__list)
+    # match user_input:
+    #     case "Kitchen" | "kitchen":
+    #         pass
+    #     case _:
+    #             print("invalid")
+    #             consumer_tree()
