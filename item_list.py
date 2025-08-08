@@ -389,3 +389,10 @@ def car_fix():
 
         Blessed is the gear that turns. Holy is the engine that roars.
         """)
+
+def workshop_fix():
+    # Note about too many toools and to use seal for now
+    image_path = "./images/purity seal"
+    root = tk.Tk()
+    app = ImageWindow(root, image_path)
+    root.mainloop()
