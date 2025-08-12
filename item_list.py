@@ -1,11 +1,10 @@
 import time
-from animations import loading_anim, line_print
+from animations import line_print
 import tkinter as tk
 from purity_seal_window import ImageWindow
 
 
 def item_list_check(item):
-    loading_anim()
     s_item = item.lower()
 
     lrg_appl = ["refrigerator", "oven", "stove", "dishwasher", "freezer"]
@@ -14,6 +13,7 @@ def item_list_check(item):
         "food processor", "mixer", "fryer", "garbage disposal"
     ]
 
+    #kitchen items
     if s_item == "toaster":
         toaster_response()
     elif s_item == "grill":
@@ -22,6 +22,12 @@ def item_list_check(item):
         large_appliances()
     elif s_item in sml_appl:
         small_appliances()
+
+    #garage/workshop items
+    elif s_item == "workshop" or "tools" or "workshop tools":
+        workshop_fix()
+    elif s_item == "automotive":
+        car_fix()
 
 def toaster_response():
     line_print("""
@@ -44,14 +50,7 @@ def toaster_response():
     simpleton. A team of Tech-Thralls will be sent to retrieve it in
     three days time.
     """)
-    time.sleep(2)
 
-
-    image_path = "./images/purity seal"
-
-    root = tk.Tk()
-    app = ImageWindow(root, image_path)
-    root.mainloop()
 
 def grill_response():
     line_print("""
@@ -392,6 +391,19 @@ def car_fix():
 
 def workshop_fix():
     # Note about too many toools and to use seal for now
+    line_print("""
+        "There are... many implements within this sanctified workshop.
+        To enumerate the function and maintenance rite for each cog
+        and conduit would take longer than the Omnissiah's patience allows.
+
+        Instead, I advise you thus: consult the blessed manuals—each one
+        a relic of sacred knowledge—and commune with their datascribed wisdom.
+        Apply a purity seal to each tool upon comprehension. If the machine
+        spirit approves, it shall hum in harmony. If not...
+        then your ignorance shall be purged."
+
+        Praise the Omnissiah. Do not touch the red tools."
+        """)
     image_path = "./images/purity seal"
     root = tk.Tk()
     app = ImageWindow(root, image_path)

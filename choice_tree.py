@@ -14,14 +14,14 @@ def choice_response(user_input):
     match user_input:
         case "consumer" | "Consumer":
             line_print("""
-                Ah, you have chosen Consumer Electronics...
+            Ah, you have chosen Consumer Electronics...
 
-                You seek communion with the lesser machine spirits—the devices
-                of mortal convenience, not of war or sanctity. Very well.
-                Though these relics lack the gravitas of plasma coils or
-                void-drives, they too may serve the Omnissiah in their
-                own humble manner.
-                """)
+            You seek communion with the lesser machine spirits—the devices
+            of mortal convenience, not of war or sanctity. Very well.
+            Though these relics lack the gravitas of plasma coils or
+            void-drives, they too may serve the Omnissiah in their
+            own humble manner.
+            """)
             #goes to consumer dialogue tree
             consumer_tree()
 
@@ -187,13 +187,14 @@ def consumer_tree():
             # suggest visiting mechanic or using a automotive program for more advice
 
             line_print("""
-            Select Catagory
-            -------------------------------
-            | Workshop Tools | Automotive |
-            -------------------------------
+                Select Catagory
+                -------------------------------
+                | Workshop Tools | Automotive |
+                -------------------------------
             """)
 
             garage_input = input("")
+            item_list_check(garage_input)
 
         case _:
             print("invalid")
