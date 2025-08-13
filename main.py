@@ -1,7 +1,6 @@
 from ascii_art import mechanicus, portrait
 import time
-from animations import binarypath_animation, cenetered_input, line_print
-from pip._vendor.rich import print
+from animations import binarypath_animation, line_print, loading
 from choice_tree import choice_response, print_centered
 import shutil
 
@@ -15,7 +14,7 @@ def startup_rp():
     """
 
     line_print(intro)
-
+    loading()
     # Mechanicus ascii art
     binarypath_animation(mechanicus)
 
@@ -28,8 +27,8 @@ def startup_rp():
     +-----------------------------------------------+
     """
     line_print(loaded)
-
-    line_print(portrait + "Blessings of the Omnissiah upon thee.")
+    line_print(portrait)
+    line_print('"Blessings of the Omnissiah upon thee."')
 
 def choice_one():
     choice = """
@@ -46,7 +45,7 @@ def choice_one():
     user_input = ""  # Initialize user_input to an empty string
 
     while not user_input:  # Loop continues as long as user_input is empty
-        user_input = input("Select your catagory, varlet: ".rjust(terminal_width//2))
+        user_input = input("\033[32mSelect your catagory, varlet: \033[0m".lower().rjust(terminal_width//2))
         if not user_input:  # Check if input is still empty after prompt
             print_centered("Your inability to follow instructions is disappointing yet not unexpected. Try again.")
     time.sleep(2)
@@ -60,7 +59,8 @@ def main():
     restart_program = True
     while restart_program:
         choice_one()
-        user_input = input(cenetered_input("Is there more you require of me, varlet? (yes/no): ").lower())
+        terminal_width = shutil.get_terminal_size().columns
+        user_input = input("\033[32mIs there more you require of me, varlet? (yes/no): \033[0m".lower().rjust(terminal_width//2))
         if user_input == "yes" or user_input == "y":
 
             restart_program = True  # Or just continue as it's already True

@@ -2,6 +2,7 @@ from terminaltexteffects.effects.effect_binarypath import BinaryPath
 import time
 import shutil
 import os
+import sys
 
 def binarypath_animation(word):
     terminal_width = shutil.get_terminal_size().columns
@@ -35,10 +36,19 @@ def line_print(text):
         print_centered(line)
         time.sleep(.5)
 
-def cenetered_input(prompt):
-    # Get terminal width for dynamic centering
-    terminal_width = os.get_terminal_size().columns
+def loading(duration=3):
+    width = shutil.get_terminal_size().columns
+    spinner_chars = ['|', '/', '-', '\\']
+    start_time = time.time()
+    while time.time() - start_time < duration:
+        for char in spinner_chars:
+            centered = (f"\033[32m{char} LOADING {char}\033[0m").center(width)
+            sys.stdout.write("\r" + centered)
+            sys.stdout.flush()
+            time.sleep(0.1)
+    sys.stdout.write(" ") # Clear the line and add newline
+    sys.stdout.flush()
 
-    prompt_text = (f"\033[32m{prompt}\033[0m")
-    centered_prompt = prompt_text.center(terminal_width)
-    return centered_prompt
+def user_choice():
+
+    return input
