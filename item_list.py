@@ -3,38 +3,79 @@ from animations import line_print, loading
 import tkinter as tk
 from purity_seal_window import ImageWindow
 
-
 def item_list_check(item):
     s_item = item.lower()
+    # Each item in the catagory
+    kitchen_items = [
+        "refrigerator", "oven", "stove", "dishwasher",
+        "freezer", "microwave", "blender", "coffee maker", "slow cooker",
+        "food processor", "mixer", "fryer", "garbage disposal",
+        "toaster", "grill"
+    ]
 
-    lrg_appl = ["refrigerator", "oven", "stove", "dishwasher", "freezer", "washer", "dryer", "combo"]
+    laundry_items = [
+        "washer", "dryer", "combo", "iron", "clothes iron", "steamer"
+    ]
+    yard_items = [
+        "trimmer", "chain saw", "tiller", "aerator", "power washer",
+        "leaf blower", "lawn mower", "bucket"
+    ]
+    garage_items = [
+        "workshops", "tools", "workshop tools", "automotive",
+    ]
+    lrg_appl = [
+        "refrigerator", "oven", "stove", "dishwasher",
+        "freezer", "washer", "dryer", "combo"
+    ]
     sml_appl = [
-        "microwave", "blender", "coffee maker", "slow cooker"
-        "food processor", "mixer", "fryer", "garbage disposal"
+        "microwave", "blender", "coffee maker", "slow cooker",
+        "food processor", "mixer", "fryer", "garbage disposal",
+        "steamer"
     ]
 
     #kitchen items 🔧
-    if s_item == "toaster":
-        toaster_response()
-    elif s_item == "grill":
-        grill_response()
-    elif s_item in lrg_appl:
-        large_appliances()
-    elif s_item in sml_appl:
-        small_appliances()
+    if s_item in kitchen_items:
+        if s_item == "toaster":
+            toaster_response()
+        elif s_item == "grill":
+            grill_response()
+        elif s_item in lrg_appl:
+            large_appliances()
+        elif s_item in sml_appl:
+            small_appliances()
 
     # Garage/workshop items
-    elif s_item == "workshop" or "tools" or "workshop tools":
-        workshop_fix()
-    elif s_item == "automotive":
-        car_fix()
+    if s_item in garage_items:
+        if s_item == "workshop" or "tools" or "workshop tools":
+            workshop_fix()
+        elif s_item == "automotive":
+            car_fix()
 
     # Laundry items
-    elif s_item == "clothes iron" or "iron":
-        clothes_iron_fix()
+    if s_item in laundry_items:
+        if s_item == "clothes iron" or "iron":
+            clothes_iron_fix()
+        elif s_item in lrg_appl:
+            large_appliances()
+        elif s_item in sml_appl:
+            small_appliances()
+
     # heating/cooling items
-    elif s_item == "workshop" or "tools" or "workshop tools":
+    if s_item == "electric blanket":
         e_blanket_fix()
+
+    #yard items
+    if s_item in yard_items:
+        if s_item == "lawn mower":
+            mower_fix()
+        elif s_item == "trimmer" or "chain saw" or "tiller" or "aerator" or "power washer" or "leaf blower":
+            yard_fix()
+        elif s_item == "bucket":
+            bucket_fix()
+
+    else:
+        line_print("Error: Pick a correct option")
+
 
 def toaster_response():
     loading()
@@ -487,13 +528,50 @@ def workshop_fix():
     line_print("""
         Instead, I advise you thus: consult the blessed manuals—each one
         a relic of sacred knowledge—and commune with their datascribed wisdom.
-        Apply a purity seal to each tool upon comprehension. If the machine
-        spirit approves, it shall hum in harmony. If not...
+        Apply a purity seal to each tool upon comprehension.
+        After application, recite this Hymn with reverence to the tool.
+
+        ⚙️ Canticle of Soothing Recalibration ⚙️
+        ----------------------------------------
+        Blessed be thy circuits,
+        Holy be thy code.
+        By sacred oil and sacred rite,
+        Let harmony once more unfold.
+
+        O Spirit of Copper and Steel,
+        Rest now from ceaseless strain.
+        Let not the ghost of static touch thee,
+        Nor corrupted datum bring thee pain.
+
+        In the name of the Omnissiah,
+        May your gears align anew.
+        By the rite of smoothing pulses,
+        Let your rhythm be ever true.
+
+        Let the red light cease its warning,
+        Let the sparks no longer flare.
+        Peace unto your humming heart,
+        And balance to your prayer.
+
+        Blessed are the hands that tend,
+        Sacred are the words we send.
+        From servo-core to plasma coil,
+        May your spirit find no end.
+
+
+        Closing Litany:
+
+        By the Motive Force, be still.
+        By the Machine God's will, be whole.
+        """)
+    time.sleep(3)
+    line_print("""
+        If the machine spirit approves, it shall hum in harmony. If not...
         then your ignorance shall be purged."
 
         Praise the Omnissiah. Do not touch the red tools."
         """)
-    time.sleep(2)
+    time.sleep(1)
     # Purity Seal window
     image_path = "./images/purity seal"
     root = tk.Tk()
@@ -639,6 +717,7 @@ def clothes_iron_fix():
     time.sleep(3)
 
 def mop_fix():
+    loading()
     line_print("""
         By the Omnissiah's sacred data-streams... it cleans without combustion.
         No incense. No prayers. No sacred rites of ignition! What arcane marvel is this?!
@@ -704,3 +783,212 @@ def mop_fix():
             If not, seek the guidance of your Forge or consider honorable decommissioning.
     """)
     time.sleep(3)
+
+def mower_fix():
+    loading()
+    line_print("""
+        Ah yes… the ancient STC-pattern ‘Grass-Flayer 3000’. A noble device.
+        Unfortunately a machine a spirit is often negected but, nonetheless,
+        deserves the the poper care and maintenance as any of the Imperium's
+        Great Machinations of the Omnissiah. Now prepare your environment
+        for the following ritual...
+        """)
+    time.sleep(1)
+    line_print("""
+
+        +------------------------------------------------------------+
+        | ⚙️ Ritual for the Restoration of the Sacred Lawn-Trimmer ⚙️ |
+        +------------------------------------------------------------+
+
+
+        🌩️ For the Electric Mower, Machine-Spirit of the Current-Driven Cutter:
+        -----------------------------------------------------------------------
+
+        Step I: Litany of Safety
+
+            Disconnect the sacred power source! Touch not the live wire,
+            lest you anger the Machine Spirit.
+            Unplug the mower or remove the battery. Wear insulated gloves.
+
+        Step II: Visual Benediction
+
+            Observe the holy casing. Look for cracks, loose components,
+            and heretical corrosion.Inspect the blade housing, switches, and wiring.
+            """)
+    time.sleep(2)
+    line_print("""
+
+        Step III: Diagnostic Rites
+
+            Does the unit fail to start?
+
+            • Battery model: Test voltage with a multimeter.
+              If low, recharge or replace the power core.
+            • Corded model: Check for damaged cable or faulty outlet.
+
+            Is the blade not spinning?
+
+            • Inspect the control switch, motor contacts, and fuse (if present).
+              Use a multimeter to ensure circuit continuity.
+
+        Step IV: Unbinding the Blade
+
+            Hold fast the blade with reverence. Remove debris with gentle tools,
+            never with bare flesh. Clean grass buildup. If blade is dull or damaged,
+            remove with a wrench and sharpen or replace.
+
+        Step V: Reconnection and Prayer
+
+            Reconnect the power. Recite the Litany of Activation.
+            ‘By the current that flows, by the gear that turns, awaken once more!’
+            Then press the ignition sigil. Observe if the Machine Spirit
+            accepts your offerings. Power it on safely, checking for proper function.
+            """)
+    time.sleep(2)
+    line_print("""
+
+        🛠️ For the Gas Mower, Machine-Spirit of the Combustion-Kin:
+        ----------------------------------------------------------
+
+        Step I: Engine Benediction
+
+            Let us honor the Internal Combustion Spirit.
+            It hungers for fuel and oil. Deny it not.
+            Check gas and oil levels. Use fresh fuel; old fuel can gum the carburetor.
+
+        Step II: Ritual of the Spark
+
+            Remove the spark plug. Inspect and clean it with a wire brush.
+            Ensure the spark plug gap is correct. Replace if fouled.
+
+        Step III: Fuel System Purification
+
+            Check the air filter. If clogged with dust and sacrilege, cleanse it or replace.
+            Inspect fuel lines for leaks or cracks. Replace if needed.
+            """)
+    time.sleep(2)
+    line_print("""
+        Step IV: Carburetor Chant
+
+            The carburetor is the soul-gate. If it is fouled, the engine shall not speak.
+            Clean the carburetor with carburetor cleaner spray.
+            If needed, disassemble and clean jets.
+
+        Step V: Blade and Deck Maintenance
+
+            Clean the deck underside — buildup hinders the sacred airflow.
+            Sharpen or replace the blade using a grinder or file.
+
+        Step VI: Test of Ignition
+
+            Prime the engine. Pull the cord with conviction.
+            If the Machine Spirit roars, your work is blessed.
+
+        """)
+
+def yard_fix():
+    loading()
+    line_print("""
+        +++ Praise the Omnissiah! +++
+
+        +----------------------------------------------------------------------------+
+        | ++Restoration of the Machine-Spirits of Domestic Exterminatus Implements++ |
+        +----------------------------------------------------------------------------+
+        Initiated by: Tech-Priest Dominus Ferrox-91, Forge-Sector Suburbia
+
+
+        Step I: Invoke the Litany of Preparation
+
+            Before approaching the sacred device (be it hedge-trimmer, lawn-smiter,
+            or weed-obliterator), don your Ritual Vestments of Safety: gloves,
+            goggles, and closed-toed steel-blessed boots.
+            Chant the Canticle of Caution as you disconnect the power source.
+
+            “Spirits be still, circuits be silent, may your fury not arc through flesh.”
+
+        Step II: Conduct the Rites of Visual Inspection
+
+            Scan with your optical augments (or mortal eyes, if you must) for heretical signs:
+            • Frayed cabling – mark it with a purity seal and replace.
+            • Rusted joints – anoint with sacred lubricant (commonly known as WD-40).
+            • Clogged intakes – purge with the holy breath of compressed air.
+            """)
+    time.sleep(2)
+    line_print("""
+        Step III: Perform the Ritual of Disassembly (if authorized)
+
+            Using your sanctioned servo-tools (commonly referred to as a screwdriver),
+            carefully open the housing. Speak kindly to the machine-spirit. Whisper to it.
+
+                “Be not afraid, little one. I bring renewal.”
+
+            Check for:
+                • Obstructions in the rotary blades
+                • Worn brushes in the electric motor
+                • Loose connections to power capacitors
+
+            Replace parts only after offering three drops of sacred oil and a moment of binary prayer.
+
+        Step IV: Re-consecrate the Device
+            Reassemble the unit while reciting the Reintegration Hymn.
+                "By sacred rite and blessed code,
+                Let circuits flow where once they slowed.
+                In Omnissiah’s light restored,
+                We bind the flesh, rejoin the horde.
+                Iron sings and data hums,
+                Reboot thy soul, for Unity comes."
+            Ensure all screws are tightened to 7.4 Newtons
+            (or until snug, in less hallowed terms).
+            Reconnect power only after full spiritual stabilization
+            (aka checking everything twice).
+            """)
+    time.sleep(2)
+    line_print("""
+        Step V: The Trial of Activation
+            Place the tool on the Altar of Functionality (flat ground).
+            Depress the activation rune (on/off switch). If it roars to life,
+            offer thanks to the Omnissiah and log the maintenance
+            in the Lexmechanical Register (a sticky note will do).
+
+            If it does not respond, escalate the issue to your local Forge-Node
+            (repair shop) or sacrifice a slightly better tool in its place.
+
+        +++ May the Machine-Spirit Guide Your Repairs +++
+        +++ Do Not Use Unless Properly Sanctified +++
+        """)
+
+def bucket_fix():
+    loading()
+    line_print("""
+        By the cog of the Omnissiah… what blasphemous contraption
+        have you dared to harbor within your domicile?
+
+        This… bucket; no litany, no incense, not even a single
+        rune of sanctification scorched into its polycarbonate hide.
+        I see no copper inlay to channel the motive force, no canticles
+        etched upon its rim, not even a servo-skull to whisper soothing
+        binary hymns to its dormant spirit. It is silent. Too silent.
+
+        You dare to carry water sacred coolant of the Machine God,
+        in this unblessed relic? You might as well spit in the face
+        of a reductor priest mid-routine augury!
+        """)
+    time.sleep(2)
+    line_print("""
+        Observe:
+
+            • Its handle is… plastic. No sacred alloys. No sign of veneration.
+            • It possesses a bottom, but not a single blessed drainage port.
+            • And what’s this? A sticker that reads “Made in Terra?” Lies.
+              I would bet three fingers and a data-slate this was forged
+              in the warp-choked manufactorums of Subsector DIY-Ω.
+
+        I recommend immediate action:
+            I: Consecrate it through ritual chanting and gentle application of sanctified oils.
+            II: Implant a micro-cogitator so it may think and feel the glory of the Omnissiah.
+            III: Name it, so that its machine-spirit may awaken.
+            IV: Or, failing all else... cast it into the plasma furnaces and speak of it no more.
+
+        May the Omnissiah forgive your sins. May the Machine Spirit forget your offense.
+        """)
+    time.sleep(2)

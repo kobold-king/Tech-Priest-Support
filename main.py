@@ -1,7 +1,7 @@
 from ascii_art import mechanicus, portrait
 import time
 from animations import binarypath_animation, line_print, loading
-from choice_tree import choice_response, print_centered
+from choice_tree import choice_response
 import shutil
 
 
@@ -45,9 +45,9 @@ def choice_one():
     user_input = ""  # Initialize user_input to an empty string
 
     while not user_input:  # Loop continues as long as user_input is empty
-        user_input = input("\033[32mSelect your catagory, varlet: \033[0m".lower().rjust(terminal_width//2))
+        user_input = input("\033[32mSelect your catagory, varlet: \033[0m".rjust(terminal_width//2))
         if not user_input:  # Check if input is still empty after prompt
-            print_centered("Your inability to follow instructions is disappointing yet not unexpected. Try again.")
+            line_print("Your inability to follow instructions is disappointing yet not unexpected. Try again.")
     time.sleep(2)
     choice_response(user_input)
 
@@ -60,7 +60,7 @@ def main():
     while restart_program:
         choice_one()
         terminal_width = shutil.get_terminal_size().columns
-        user_input = input("\033[32mIs there more you require of me, varlet? (yes/no): \033[0m".lower().rjust(terminal_width//2))
+        user_input = input("\033[32mIs there more you require of me, varlet? (yes/no): \033[0m".rjust(terminal_width//2))
         if user_input == "yes" or user_input == "y":
 
             restart_program = True  # Or just continue as it's already True

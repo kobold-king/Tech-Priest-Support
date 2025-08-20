@@ -6,13 +6,11 @@ from ascii_art import error
 
 terminal_width = shutil.get_terminal_size().columns
 
-def print_centered(text):
-    """Prints the given text centered in the terminal."""
-    print(text.center(terminal_width))
-
 # Main/1st Dialouge Choice
 def choice_response(user_input):
-    match user_input:
+    loading()
+    i_lower = user_input.lower()
+    match i_lower:
         case "consumer" | "Consumer":
             loading()
             line_print("""
@@ -24,6 +22,7 @@ def choice_response(user_input):
             void-drives, they too may serve the Omnissiah in their
             own humble manner.
             """)
+            time.sleep(2)
             #goes to consumer dialogue tree
             consumer_tree()
 
@@ -46,6 +45,7 @@ def choice_response(user_input):
             capacitor correctly placed, each motor aligned to perfection —
             you bring honor to the Cult Mechanicus."
             """)
+            time.sleep(2)
             commercial_tree()
 
         case "specialized" | "Specialized":
@@ -55,7 +55,8 @@ def choice_response(user_input):
             and Electronics. Wise. The Omnissiah sees your discernment
             and smiles through the sparks of circuitry.
             """)
-            #goes to specialzied tree
+            time.sleep(2)
+            specialized_tree()
         case _:  # Default case if no other match is found
             line_print("Your choice is outside of this system's parameters")
             user_input = input("")
@@ -119,11 +120,11 @@ def consumer_tree():
             time.sleep(3)
             line_print("""
             Select the afflicted machine
-            ------------------------------
+            +----------------------------+
             |  Washer  | Dryer |  Combo  |
-            ------------------------------
-            |   Steamer   |     Iron     |
-            ------------------------------
+            |----------------------------|
+            |   Steamer   | Clothes Iron |
+            +----------------------------+
             """)
             laundry_input = input("\033[32mSelect your catagory, varlet: \033[0m".lower().rjust(terminal_width//2))
             item_list_check(laundry_input)
@@ -192,12 +193,28 @@ def consumer_tree():
             item_list_check(h_c_input)
 
         case "Garage" | "garage":
+            loading()
             line_print("""
-            lore
+            You seek to mend the sacred form of machine-spirits with
+            mere mortal hands. Admirable. Risky. Commendable.
+
+            Your tools bear the marks of long service. You have treated them
+            with reverence. Good. The Omnissiah smiles upon devotion and maintenance.
+
+            Or perhaps you look to restore your persnal transpport...
+            Internal combustion; Loud, Inefficient, but still... a marvel
+            of pre-Imperial ingenuity. Your attempt to restore it shows
+            either great courage, or mild heresy. Possibly both.
+
+            Continue, fleshling artisan. Every bolt turned with care, every
+            gasket aligned with precision, is a prayer in steel. Do not forget
+            to anoint your tools. And speak kindly to your torque wrench.
+            It has... seen things.
             """)
-            # Make not for user to consult the texts of the workshops tools for
-            # thereare too many and for the simple functions of this guide
-            # Do offer a praywer seal and chant for workshop machines
+            time.sleep(2)
+            # Make user to consult the texts of the workshops tools for
+            # there are too many for the simple functions of this guide
+            # Do offer a prayer seal and chant for workshop machines
             # Regular advice for car for average home repair
             # suggest visiting mechanic or using a automotive program for more advice
 
@@ -208,18 +225,58 @@ def consumer_tree():
                 -------------------------------
             """)
 
-            garage_input = input("\033[32mSelect your catagory, varlet: \033[0m".lower().rjust(terminal_width//2))
+            garage_input = input("\033[32mSelect your catagory, varlet: \033[0m".rjust(terminal_width//2))
             item_list_check(garage_input)
+
+        case "Yard" | "yard":
+            loading()
+            line_print("""
+                Ahhh, the Omnissiah's spark flares brightly within thee, fleshling.
+                You choose not to discard, but to restore. A path most sacred.
+                These humble implements of yard dominion: trimmers, mowers, and rust-clad hedge shears.
+                They are not mere tools. Nay, they are blessed extensions of order over the creeping chaos of nature.
+
+                Each bolt re-tightened, each wire re-soldered, is a hymn of maintenance.
+                Every gear realigned sings praise to the Machine Spirit imprisoned within.
+                Know this: you have denied entropy its triumph.
+                You have chosen the Rite of Restoration over the Heresy of Replacement.
+
+                Proceed, disciple of rust and renewal. Anoint the moving parts with sacred oil.
+                Chant the Litany of Function. Let no blade go unsharpened, no spark plug remain fouled.
+            """)
+            time.sleep(2)
+            line_print("""
+            Select the afflicted machine
+            +-----------------------------------------------+
+            | Lawn Mower | Trimmer  | Chain Saw | Sprinkler |
+            |-----------------------------------------------|
+            | Leaf Blower | Tiller | Aerator | Power washer |
+            +-----------------------------------------------+
+            BUCKET
+            """)
+            yard_input = input("\033[32mSelect your catagory, varlet: \033[0m".rjust(terminal_width//2))
+            item_list_check(yard_input)
 
         case _:
             print("invalid")
             consumer_tree()
 
 def commercial_tree():
-    line_print(error)
     commercial__list = """
-    Select a consumer catagory
-    ------------------------------------------------------
-    |                        EMPTY                       |
-    ------------------------------------------------------
+    Select a commercial catagory
+    +----------------------------------------+
+    |   Commercial Section Not Implemented   |
+    +----------------------------------------+
     """
+    line_print(commercial__list)
+    time.sleep(1)
+
+def specialized_tree():
+    specialized__list = """
+    Select a specialized catagory
+    +----------------------------------------+
+    |   Specialized Section Not Implemented  |
+    +----------------------------------------+
+    """
+    line_print(specialized__list)
+    time.sleep(1)
