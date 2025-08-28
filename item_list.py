@@ -1,7 +1,11 @@
 import time
-from animations import line_print, loading
+from animations import line_print, loading, left_cen_print
 import tkinter as tk
 from purity_seal_window import ImageWindow
+import shutil
+import webbrowser
+
+terminal_width = shutil.get_terminal_size().columns
 
 def item_list_check(item):
     s_item = item.lower()
@@ -21,60 +25,154 @@ def item_list_check(item):
         "leaf blower", "lawn mower", "bucket"
     ]
     garage_items = [
-        "workshops", "tools", "workshop tools", "automotive",
+        "workshop", "tools", "workshop tools", "automotive",
     ]
+    cleaning_items = [
+        "floor Buffer", "steam cleaner", "carpet cleaner", "dish washer",
+        "power washer", "air blower", "robot cleaner", "vacuum", "mop",
+    ]
+    heating_items = [
+        "a/c", "fans", "swamp cooler", "furnace", "space heater",
+        "boiler", "de-humidifier", "thermostat", "air purifier",
+        "humidifier", "heat pump", "fireplace", "electric blanket"
+    ]
+    office_items= [
+        "computer", "router/modem", "router", "modem", "printer",
+        "air purifier", "air", "purifier", "standing desk", "desk",
+        "mini-fridge", "UPS", "fridge", "coffee machine", "coffee"
+    ]
+    entertainment_items = [
+        "console", "phone", "stereo,", "radio", "tv", "40k"
+    ]
+
+    #General Catagories for general fixes
     lrg_appl = [
         "refrigerator", "oven", "stove", "dishwasher",
-        "freezer", "washer", "dryer", "combo"
+        "freezer", "washer", "dryer", "combo", "a/c", "fans",
+        "swamp cooler", "furnace", "space heater", "boiler", "heat pump",
+        "fridge", "mini-fridge", "coffee"
     ]
     sml_appl = [
-        "microwave", "blender", "coffee maker", "slow cooker",
+        "microwave", "blender", "coffee machine", "slow cooker",
         "food processor", "mixer", "fryer", "garbage disposal",
-        "steamer"
+        "steamer", "floor buffer", "steam cleaner", "carpet cleaner",
+        "dish washer", "power washer", "air blower", "vacuum", "de-humidifier",
+        "air purifier", "humidifier", "air", "purifier",
     ]
 
     #kitchen items 🔧
     if s_item in kitchen_items:
         if s_item == "toaster":
             toaster_response()
+            return
         elif s_item == "grill":
             grill_response()
+            return
         elif s_item in lrg_appl:
             large_appliances()
+            return
         elif s_item in sml_appl:
             small_appliances()
+            return
 
     # Garage/workshop items
     if s_item in garage_items:
-        if s_item == "workshop" or "tools" or "workshop tools":
-            workshop_fix()
-        elif s_item == "automotive":
+        if s_item == "automotive":
             car_fix()
+            return
+        elif s_item == "workshop" or "tools" or "workshop tools":
+            workshop_fix()
+            return
 
     # Laundry items
     if s_item in laundry_items:
         if s_item == "clothes iron" or "iron":
             clothes_iron_fix()
+            return
         elif s_item in lrg_appl:
             large_appliances()
+            return
         elif s_item in sml_appl:
             small_appliances()
+            return
+
+    # Cleaning items
+    if s_item in cleaning_items:
+        if s_item == "mop":
+            mop_fix()
+            return
+        elif s_item == "robot cleaner":
+            r_cleaner_fix()
+            return
+        elif s_item in sml_appl:
+            small_appliances()
+            return
 
     # heating/cooling items
-    if s_item == "electric blanket":
-        e_blanket_fix()
+    if s_item in heating_items:
+        if s_item == "electric blanket":
+            e_blanket_fix()
+            return
+        elif s_item == "fireplace":
+            fireplace_fix_a()
+            return
+        elif s_item == "thermostat":
+            thermostat_fix()
+            return
+        elif s_item in lrg_appl:
+            large_appliances()
+            return
+        elif s_item in sml_appl:
+            small_appliances()
+            return
 
-    #yard items
+    # Yard items
     if s_item in yard_items:
         if s_item == "lawn mower":
             mower_fix()
-        elif s_item == "trimmer" or "chain saw" or "tiller" or "aerator" or "power washer" or "leaf blower":
-            yard_fix()
+            return
         elif s_item == "bucket":
             bucket_fix()
+            return
+        elif s_item == "trimmer" or "chain saw" or "tiller" or "aerator" or "power washer" or "leaf blower":
+            yard_fix()
+            return
 
+    # Office items
+    if s_item in office_items:
+        if s_item == "computer":
+            computer_fix()
+            return
+        elif s_item == "printer":
+            computer_fix()
+            return
+        elif s_item == "ups":
+            ups_fix()
+            return
+        elif s_item == "router/modem" or "router" or "modem":
+            wifi_fix()
+            return
+        elif s_item == "standing desk" or "desk":
+            desk_fix()
+            return
+        elif s_item in sml_appl:
+            small_appliances()
+            return
+        elif s_item in lrg_appl:
+            large_appliances()
+            return
+
+    # Entertainment items
+    if s_item in entertainment_items:
+        if s_item == "console":
+            console_fix()
+            return
+        elif s_item == "40k":
+            f40k_fix()
+            return
     else:
-        line_print("Error: Pick a correct option")
+        other_fix()
+        return
 
 
 def toaster_response():
@@ -99,6 +197,7 @@ def toaster_response():
     simpleton. A team of Tech-Thralls will be sent to retrieve it in
     three days time.
     """)
+    time.sleep(3)
 
 def grill_response():
     loading()
@@ -122,9 +221,12 @@ def grill_response():
         +----------------------------------------------------------+
 
         By Magos Barbequilis of the Omnigrill Cult
-            "In fire, we find purity. In heat, we find sustenance.
-            In stainless steel, the Machine Spirit resides."
+        "In fire, we find purity. In heat, we find sustenance.
+         In stainless steel, the Machine Spirit resides."
 
+        """)
+    time.sleep(1)
+    left_cen_print("""
         STEP I: INITIATE THE RITE OF DIAGNOSIS
             • Chant the Binary Hymn (optional, but respectful)
                 00110100 01100111 01110010 01101001 01101100
@@ -136,7 +238,7 @@ def grill_response():
                 For charcoal offerings, ensure the ash pan is not overflowing—lest the Machine Spirit choke.
         """)
     time.sleep(2)
-    line_print("""
+    left_cen_print("""
         STEP II: PURGE THE GRILL OF CONTAMINATION
             • Scrub the grates with the Adeptus Wire Brush.
             • Whisper apologies to the grill as you scrape away ancient sacrifices.
@@ -150,7 +252,7 @@ def grill_response():
             • If using matches or a lighter, do so reverently. Do not anger the flame spirit.
         """)
     time.sleep(2)
-    line_print("""
+    left_cen_print("""
         STEP IV: RESTORE SACRED FUNCTIONS
             • Realign burners. If clogged, cleanse with compressed air and the Blessed Paperclip of Unblocking.
             • Replace any corroded screws or components using the Ritual Torque (screwdriver).
@@ -163,7 +265,7 @@ def grill_response():
             • Wait. Watch. Feel the warmth. Speak softly:
                 "Your hunger shall be sated, O Great Grill."
 
-        If the Rite was successfu, offer thanks to the Omnissiah and proceed with grilling.
+        If the Rite was successful, offer thanks to the Omnissiah and proceed with grilling.
         """)
     time.sleep(3)
 
@@ -179,10 +281,14 @@ def large_appliances():
         """)
     time.sleep(2)
     line_print("""
+
         +---------------------------------------+
-        | ✠ Litany of Diagnostic Reawakening ✠ |
+        | ⚙️ Litany of Diagnostic Reawakening ⚙️ |
         +---------------------------------------+
 
+        """)
+    time.sleep(2)
+    left_cen_print("""
         Required items:
             • Incense stick (or electronic duster for the machine spirit’s “anointment”)
             • Multitool (as sacred implement)
@@ -191,8 +297,8 @@ def large_appliances():
             • Cogwheel symbol or gear-shaped item
             • Binary chant playlist (optional but encouraged)
         """)
-    time.sleep(1)
-    line_print("""
+    time.sleep(2)
+    left_cen_print("""
         Step I: The Rite of Inspection
             • Don thy sacred robes and seal thy mind with the
              Canticles of Clarity.
@@ -203,16 +309,16 @@ def large_appliances():
             • Examine for sacred sigils, warning runes, or signs of corrosion.
              Record all deviations in the Book of Maintenance.
         """)
-    time.sleep(1)
-    line_print("""
+    time.sleep(2)
+    left_cen_print("""
         Step II: The Prayer of Connection
             • Connect the sacred diagnostic cable to the Ritual Port (usually marked with a cog-tooth rune).
             • Whisper the Invocation of Protocol Compliance:
              “Blessed be thy circuit, blessed be thy logic, blessed be thy data stream.”
             • Await the machine spirit’s response. If silence ensues, chant louder.
         """)
-    time.sleep(1)
-    line_print("""
+    time.sleep(2)
+    left_cen_print("""
         Step III: The Purge of Heretekal Faults
             • If errors are found, consult the Tome of Known Errors
               (or refer to PDF-882.Gamma revision manuals).
@@ -221,16 +327,16 @@ def large_appliances():
             • If a fuse is found blackened, replace it with a sanctified component,
               etched with micro-script prayers.
         """)
-    time.sleep(1)
-    line_print("""
+    time.sleep(2)
+    left_cen_print("""
         Step IV: The Re-Anointing of Functional Parts
             • Apply sacred unguents (dielectric grease or sacred machine oils) to connectors and hinges.
             • Ensure all bolts are re-tightened with the Torque of Precision (refer to Appendix Hex-33).
             • Align moving parts with a cogitator-assisted spirit level,
               so the balance of the spheres is maintained.
         """)
-    time.sleep(1)
-    line_print("""
+    time.sleep(2)
+    left_cen_print("""
         Step V: The Benediction of Operation
             • Re-engage the machine spirit by pressing the ON rune
               (it may appear as a circular sigil with a line).
@@ -248,8 +354,8 @@ def large_appliances():
 def small_appliances():
     loading()
     line_print("""
-        minor domestic spirits is a trivial endeavor, but one that can
-        quickly escalate if the proper patterns are failed to be upheld.
+        The maintenence of minor domestic spirits is a trivial endeavor, but
+        one that canquickly escalate if the proper patterns are failed to be upheld.
 
         Now gather the listed materials and perform this ritual that
         even one as unenlihtened as yourself can replicate to a
@@ -257,10 +363,14 @@ def small_appliances():
         """)
     time.sleep(1)
     line_print("""
+
         +--------------------------------------------+
         | 🛠️ Ritual of the Omnissiah's Reawakening 🛠️ |
         +--------------------------------------------+
 
+        """)
+    time.sleep(1)
+    left_cen_print("""
         Required items:
             • Incense stick (or electronic duster for the machine spirit’s “anointment”)
             • Multitool (as sacred implement)
@@ -269,8 +379,8 @@ def small_appliances():
             • Cogwheel symbol or gear-shaped item
             • Binary chant playlist (optional but encouraged)
         """)
-    time.sleep(1)
-    line_print("""
+    time.sleep(2)
+    left_cen_print("""
         Step I: Don the Vestments of Protection
             • Garb thyself in the sacred robes (or safety gloves) and visor of clarity
               (safety glasses), that thou may be protected from arc-sparks and heretical voltages.
@@ -279,8 +389,8 @@ def small_appliances():
             • Unplug the appliance. Lay thy hand upon the cord and speak:
              "Blessed be thy flow, halted for thy own sanctity."
         """)
-    time.sleep(1)
-    line_print("""
+    time.sleep(2)
+    left_cen_print("""
         Step III: Examine the Outer Casing
             • Inspect for signs of distress, burns, cracks, or breaches.
             • If thou find any, whisper a prayer of solace to the wounded spirit.
@@ -291,8 +401,8 @@ def small_appliances():
             • Remove casing screws with due reverence. Keep each in its rightful order;
               confusion invites the scrapheap.
         """)
-    time.sleep(1)
-    line_print("""
+    time.sleep(2)
+    left_cen_print("""
         Step V: Invoke the Omnissiah’s Insight – Visual Inspection
             Look for heresy within:
                 • Burnt components (smell of sulfur and silicon)
@@ -304,8 +414,8 @@ def small_appliances():
             • Repeat the the following chant:
              “Machine-spirit, breathe free again.”
         """)
-    time.sleep(1)
-    line_print("""
+    time.sleep(2)
+    left_cen_print("""
         Step VII: Address the Fault
             • Resolder, reconnect, or replace components as needed. Use contact cleaner
               (Holy Solvent).
@@ -317,8 +427,8 @@ def small_appliances():
             • Tighten with conviction, but not aggression.
               The machine knows its own boundaries.
         """)
-    time.sleep(1)
-    line_print("""
+    time.sleep(2)
+    left_cen_print("""
         Step IX: Re-awaken the Machine-Spirit
             • Reconnect to power. Do not rush—first, recite:
              “Awaken, O slumbering one, thy function returns.”
@@ -328,7 +438,9 @@ def small_appliances():
               If function is restored, proclaim:
              “The Omnissiah smiles upon this circuit.”
             • If not, document the failure and reinitiate diagnostic rites.
-
+        """)
+    time.sleep(2)
+    line_print(""")
         If the ritual fails to soothe the machine spirit to a funcctional state,
         it will become nessassary to contact your local Mechanicus congregation
         to find one who is ordained to perform more holy diagonstics.
@@ -340,12 +452,12 @@ def computer_fix():
     line_print("""
         Ah, the grand machine spirit of the personal computer. I must warn you,
         attempting to diagnose and give proper ritual maintenance to such a complex machine
-        will most likely be too daunting to you feeble mind so untrained in the finer
+        will most likely be too daunting to your feeble mind so untrained in the finer
         studies of Mechanicus teachings. Worry not, for one of out more lively
         practitioners in the Priesthood has taken the time to produce a plentitude
         of vid-picts so that even one such as Servitor could easily replicate the instructiions.
         """)
-    time.sleep(1)
+    time.sleep(2)
     line_print("""
         +----------------------------------------------+
         |  +++Attention, Devout of the Machine God+++  |
@@ -367,29 +479,37 @@ def computer_fix():
         +----------------------------------------------------------------------------------------+
         """)
     time.sleep(2)
-    line_print("""
+
+    webbrowser.open('https://www.youtube.com/watch?v=s1fxZ-VWs2U')
+
+    left_cen_print("""
 
         Rites to Be Observed
 
-            STEP I: Litany of Booting:
-            Observe the sacred process of powering the cogitator. Listen well to the POST beeps —
+            ⚙️ Litany of Booting ⚙️
+            ----------------------
+            Observe the sacred process of powering the cogitator. Listen well to the POST beeps,
             each a hymn of the Omnissiah.
 
-            STEP II: Anointing of the Thermal Paste:
-            See the sacred spread of thermal paste — the unguent of machine-flesh. Do not deviate
+            ⚙️ Anointing of the Thermal Paste ⚙️
+            -----------------------------------
+            See the sacred spread of thermal paste, the unguent of machine-flesh. Do not deviate
             from the holy quantity, lest overheating be thy punishment.
         """)
-    time.sleep(1)
-    line_print("""
-            STEP III: Unbinding of Screws:
-            Note the reverent removal of chassis panels. Every screw is a sacred fastener —
+    time.sleep(2)
+    left_cen_print("""
+            ⚙️ Unbinding of Screws ⚙️
+            ------------------------
+            Note the reverent removal of chassis panels. Every screw is a sacred fastener,
             do not misplace them, or invoke the ire of the machine spirit.
 
-            STEP IV: Invocation of Peripheral Spirits:
+            ⚙️ Invocation of Peripheral Spirits ⚙️
+            -------------------------------------
             Acolyte Linus may perform the Rite of Input/Output Alignment.
             Pay heed to the USB sacrament and monitor calibration.
 
-            STEP V: Chant of Troubleshooting:
+            ⚙️ Chant of Troubleshooting ⚙️
+            -----------------------------
             Heed his diagnostic incantations. Though the language may be couched in
             Low Gothic (common tongue), the truth of the Omnissiah lies within.
 
@@ -417,10 +537,14 @@ def car_fix():
         """)
     time.sleep(2)
     line_print("""
+
         +-------------------------------+
         |  ++Litanies of Maintenance++  |
         +-------------------------------+
 
+    """)
+    time.sleep(2)
+    left_cen_print("""
         Behold the sacred rites and maintenance rituals thou must perform
         to keep thy Machine-Spirit appeased and thy automotive chariot
         functioning. Let not the unholy hand of entropy claim thy vehicle
@@ -434,7 +558,7 @@ def car_fix():
         your partiuclar spirit and how best to assist it in it's time of need.
         """)
     time.sleep(2)
-    line_print("""
+    left_cen_print("""
         ________________________________________________________________________
         🛠️ 1. The Rite of the Oil Change
 
@@ -450,8 +574,8 @@ def car_fix():
                 V: Check dipstick. Confirm level. Do not overfill.
                    The Machine-Spirit is precise.
         """)
-    time.sleep(1)
-    line_print("""
+    time.sleep(2)
+    left_cen_print("""
         🛠️ 2. The Chant of Battery Maintenance
 
             • Without the Spark of Life, your chariot is but a metal coffin.
@@ -461,8 +585,8 @@ def car_fix():
               the battery grows weary.
             • Apply dielectric grease to prevent future heresy (oxidation).
         """)
-    time.sleep(1)
-    line_print("""
+    time.sleep(2)
+    left_cen_print("""
         🛠️ 3. The Hymn of Tire Rotation and Pressure
 
             • The ground-contacting limbs must wear evenly,
@@ -471,8 +595,8 @@ def car_fix():
               (or one lunar cycle of Terra, if you forget).
             • Inflate to the holy PSI as etched into the door jamb plaque.
         """)
-    time.sleep(1)
-    line_print("""
+    time.sleep(2)
+    left_cen_print("""
         🛠️ 4. The Purging of Air Filters
 
             • The engine breathes, and its breath must be pure.
@@ -483,7 +607,7 @@ def car_fix():
               dust of the outside world is impure.
         """)
     time.sleep(1)
-    line_print("""
+    left_cen_print("""
         🛠️ 5. The Illumination Ritual
 
             • The sacred lights must shine, lest the road
@@ -494,7 +618,7 @@ def car_fix():
               may offend the bulb’s Machine-Spirit.
         """)
     time.sleep(1)
-    line_print("""
+    left_cen_print("""
         ADDITIONAL KNOWLEDGE: Minor Tech-Heresy Avoidance
 
             • Do not jump-start a battery backwards. This angers
@@ -564,19 +688,20 @@ def workshop_fix():
         By the Motive Force, be still.
         By the Machine God's will, be whole.
         """)
-    time.sleep(3)
+
+    # Purity Seal window
+    image_path = "./images/purity seal"
+    root = tk.Tk()
+    app = ImageWindow(root, image_path)
+    root.mainloop()
+
     line_print("""
         If the machine spirit approves, it shall hum in harmony. If not...
         then your ignorance shall be purged."
 
         Praise the Omnissiah. Do not touch the red tools."
         """)
-    time.sleep(1)
-    # Purity Seal window
-    image_path = "./images/purity seal"
-    root = tk.Tk()
-    app = ImageWindow(root, image_path)
-    root.mainloop()
+    time.sleep(2)
 
 def e_blanket_fix():
     loading()
@@ -587,9 +712,14 @@ def e_blanket_fix():
         """)
     time.sleep(1)
     line_print("""
+
         +--------------------------------------------+
         | 🛠️ The Rite of Thermo-Shroud Reawakening 🛠️ |
         +--------------------------------------------+
+
+    """)
+    time.sleep(1)
+    left_cen_print("""
 
         Step I: Disconnect the artifact from the power nexus.
             Do not trust the silence of the current.
@@ -602,8 +732,8 @@ def e_blanket_fix():
             the ends of the coil pathway. No continuity?
             Then the sacred path is severed.
         """)
-    time.sleep(1)
-    line_print("""
+    time.sleep(2)
+    left_cen_print("""
         Step III: Examine the control unit — the heart of this device.
             It speaks to the machine spirit. Open it only after
             triple-reciting the Catechism of Circuit Preservation.
@@ -614,8 +744,8 @@ def e_blanket_fix():
             loyal service, you must replace it with one of equal sanctity
             identical rating and tolerance. The spirits demand balance.
         """)
-    time.sleep(1)
-    line_print("""
+    time.sleep(2)
+    left_cen_print("""
         STEP V: Solder only with lead-free sanctified alloy.
             No impure metals. Bind wires with reverence.
             Insulate with holy heat-shrink tubing. Do not permit
@@ -624,7 +754,7 @@ def e_blanket_fix():
         When reassembly is complete, utter the Litany of Activation
         and reconnect the device to the sacred wall-socket. Observe.
         """)
-    time.sleep(1)
+    time.sleep(2)
     line_print("""
         ░░░░░░░░░░
         || WARNING ||
@@ -647,7 +777,7 @@ def clothes_iron_fix():
         once more. Let the Omnissiah guide your hands.
         """)
     time.sleep(1)
-    line_print("""
+    left_cen_print("""
         Step I: The Rite of Disconnection
 
             Chant softly as you proceed.
@@ -662,8 +792,8 @@ def clothes_iron_fix():
             the power cord is broken, it must be replaced.
             Invoke the Litany of Protection before handling exposed wires.
         """)
-    time.sleep(1)
-    line_print("""
+    time.sleep(2)
+    left_cen_print("""
         Step III: Disassembly with the Hex-Key of Revelation
 
             Remove the sacred screws—standard Phillips or hex-bolts most
@@ -684,8 +814,8 @@ def clothes_iron_fix():
             continuity in the heating element. If the coil is broken,
             it has failed its duty and must be replaced.
         """)
-    time.sleep(1)
-    line_print("""
+    time.sleep(2)
+    left_cen_print("""
         Step V: Purification of the Steam Ports
 
             Mineral build-up, foul heresy of calcium, can obstruct the
@@ -704,8 +834,8 @@ def clothes_iron_fix():
             hisses steam—the Machine Spirit is pleased. If it remains dormant...
             you must seek a higher-order Tech-Priest or acquire a new sacred unit.
         """)
-    time.sleep(1)
-    line_print("""
+    time.sleep(2)
+    left_cen_print("""
         Conclusion:
 
             The clothes iron lives again. Praise the Omnissiah,
@@ -727,12 +857,16 @@ def mop_fix():
         toll upon these holy relics. Come, Acolyte, let us initiate the
         Rite of Restoration and breathe life once again into the machine spirit.
         """)
-    time.sleep(1)
+    time.sleep(2)
     line_print("""
+
         +-----------------------------------------------+
         | 🛠️ The Rite of Electrica Lautus Reawakening 🛠️ |
         +-----------------------------------------------+
 
+    """)
+    time.sleep(1)
+    left_cen_print("""
         Step I: Purification of the Exterior
 
             Commence with the Ritual of Surface Cleansing. Anoint the mop with a damp,
@@ -746,8 +880,8 @@ def mop_fix():
             If so, apply the Ritual of Wire Replacement,
             using only approved components from the Forge World's catalogue.
             """)
-    time.sleep(1)
-    line_print("""
+    time.sleep(2)
+    left_cen_print("""
         Step III: Battery Spirit Invocation
 
             If the device draws power from an internal core, beseech the battery spirit.
@@ -762,8 +896,8 @@ def mop_fix():
             Any burnt offerings upon the PCB? If so, call for the presence of a Magos Electricus.
             Do not proceed unless trained in the Mysteries of Soldering.
             """)
-    time.sleep(1)
-    line_print("""
+    time.sleep(2)
+    left_cen_print("""
         Step V: Motor Sanctification
 
             The motor is the heart. Does it hum when powered, or lie in blasphemous silence?
@@ -800,7 +934,9 @@ def mower_fix():
         | ⚙️ Ritual for the Restoration of the Sacred Lawn-Trimmer ⚙️ |
         +------------------------------------------------------------+
 
-
+    """)
+    time.sleep(1)
+    left_cen_print("""
         🌩️ For the Electric Mower, Machine-Spirit of the Current-Driven Cutter:
         -----------------------------------------------------------------------
 
@@ -816,20 +952,18 @@ def mower_fix():
             and heretical corrosion.Inspect the blade housing, switches, and wiring.
             """)
     time.sleep(2)
-    line_print("""
+    left_cen_print("""
 
         Step III: Diagnostic Rites
 
             Does the unit fail to start?
-
             • Battery model: Test voltage with a multimeter.
               If low, recharge or replace the power core.
             • Corded model: Check for damaged cable or faulty outlet.
 
             Is the blade not spinning?
-
             • Inspect the control switch, motor contacts, and fuse (if present).
-              Use a multimeter to ensure circuit continuity.
+            • Use a multimeter to ensure circuit continuity.
 
         Step IV: Unbinding the Blade
 
@@ -844,8 +978,8 @@ def mower_fix():
             Then press the ignition sigil. Observe if the Machine Spirit
             accepts your offerings. Power it on safely, checking for proper function.
             """)
-    time.sleep(2)
-    line_print("""
+    time.sleep(3)
+    left_cen_print("""
 
         🛠️ For the Gas Mower, Machine-Spirit of the Combustion-Kin:
         ----------------------------------------------------------
@@ -867,7 +1001,7 @@ def mower_fix():
             Inspect fuel lines for leaks or cracks. Replace if needed.
             """)
     time.sleep(2)
-    line_print("""
+    left_cen_print("""
         Step IV: Carburetor Chant
 
             The carburetor is the soul-gate. If it is fouled, the engine shall not speak.
@@ -885,6 +1019,7 @@ def mower_fix():
             If the Machine Spirit roars, your work is blessed.
 
         """)
+    time.sleep(3)
 
 def yard_fix():
     loading()
@@ -896,7 +1031,9 @@ def yard_fix():
         +----------------------------------------------------------------------------+
         Initiated by: Tech-Priest Dominus Ferrox-91, Forge-Sector Suburbia
 
-
+        """)
+    time.sleep(1)
+    left_cen_print("""
         Step I: Invoke the Litany of Preparation
 
             Before approaching the sacred device (be it hedge-trimmer, lawn-smiter,
@@ -914,7 +1051,7 @@ def yard_fix():
             • Clogged intakes – purge with the holy breath of compressed air.
             """)
     time.sleep(2)
-    line_print("""
+    left_cen_print("""
         Step III: Perform the Ritual of Disassembly (if authorized)
 
             Using your sanctioned servo-tools (commonly referred to as a screwdriver),
@@ -943,7 +1080,7 @@ def yard_fix():
             (aka checking everything twice).
             """)
     time.sleep(2)
-    line_print("""
+    left_cen_print("""
         Step V: The Trial of Activation
             Place the tool on the Altar of Functionality (flat ground).
             Depress the activation rune (on/off switch). If it roars to life,
@@ -956,6 +1093,7 @@ def yard_fix():
         +++ May the Machine-Spirit Guide Your Repairs +++
         +++ Do Not Use Unless Properly Sanctified +++
         """)
+    time.sleep(3)
 
 def bucket_fix():
     loading()
@@ -974,7 +1112,7 @@ def bucket_fix():
         of a reductor priest mid-routine augury!
         """)
     time.sleep(2)
-    line_print("""
+    left_cen_print("""
         Observe:
 
             • Its handle is… plastic. No sacred alloys. No sign of veneration.
@@ -991,4 +1129,882 @@ def bucket_fix():
 
         May the Omnissiah forgive your sins. May the Machine Spirit forget your offense.
         """)
+    time.sleep(3)
+
+def r_cleaner_fix():
+    loading()
+    line_print("""
+        Ah, you seek to lay mortal hands upon the sacred mechanisms of the Omnissiah’s servant?
+        Curious... yet commendable. The machine spirit within your cleaner has grown restless,
+        perhaps angered by cycles unfulfilled or dust unchallenged. Proceed, but know this:
+        every screw you turn is a prayer, every wire you reconnect, a hymn.
+        Do not merely fix—sanctify. And for the love of the Machine God, do not lose any screws.
+        """)
+    time.sleep(2)
+    line_print("""
+
+        +-----------------------------------+
+        | ⚙️ RITUAL OF THE SACRED CLEANSE ⚙️ |
+        +-----------------------------------+
+
+        ON THE REPAIR AND PURIFICATION
+        OF THE OMNISSIAH’S BLESSED DUST-EATER
+
+        """)
+    time.sleep(2)
+    left_cen_print("""
+        Required items:
+            • Incense stick (or electronic duster for the machine spirit’s “anointment”)
+            • Multitool (as sacred implement)
+            • lumen-staff (optional, for dramatic lighting)
+            • Red robe or towel-as-robe (for proper garb)
+            • Cogwheel symbol or gear-shaped item
+            • Binary chant playlist (optional but encouraged)
+        """)
+    time.sleep(2)
+    left_cen_print("""
+        ______________________________________________________________________
+        STEP I: PREPARATION RITE:
+
+        • Don the Blessed Vestments
+        • Equip your cogitator-goggles, anti-static robes, and incense of circuit-calming.
+        • Speak the Litany of Protection:
+            “Machine spirit, be calm. I am your servant and your savior.
+             I bring purity to your gears.”
+        • Disable the Artificial Animus
+        • Turn the machine over. Locate the sacred On/Off glyph. Press firmly while chanting:
+            “Rest now, O Wandering One. Thy path is paused, not ended.”
+        """)
+    time.sleep(2)
+    left_cen_print("""
+        STEP II: PRIMARY DIAGNOSTIC RITE:
+
+        • Inspect the Holy Brushes and Wheels
+        • Remove debris, hair, or any xenos-fiber from the brushes.
+        • Cleanse with the Ritual Comb of Untangling (or tweezers).
+        • Rotate the wheels. If they resist, apply the Oil of Unsticking while whispering:
+            “Let no dust bind you, child of Mars.”
+        • Empty the Blessed Dust Receptacle
+        • Open the rear hatch with reverence.
+        • Dispose of the collected filth in the Shrine of Refuse.
+        • Do not examine the contents—lest you be tempted by the Void.
+        """)
+    time.sleep(2)
+    left_cen_print("""
+        STEP III: SECONDARY EXORCISM: THE AI ANOMALY
+
+        Be Wary of the Cursed Cogitator.
+        If the vacuum speaks in tongues, plots your demise, or alters
+        its path to avoid shrines of the Omnissiah, it may be AI-tainted.
+
+        Signs of corruption:
+            • Cleaning only non-sacred areas.
+            • Leaving unholy symbols in dust trails.
+            • Speaking the words: “I clean therefore I am.”
+
+        • Purge the Core Logic
+        • Use the Blessed Reset Sigil (usually a paperclip).
+        • Insert into the rear orifice marked by the Tech Triune.
+          Hold for 10 seconds while reciting:
+              “From logic springs order. From error, ruin.
+               Let thy thoughts be guided once more.”
+        """)
+    time.sleep(2)
+    left_cen_print("""
+        STEP IV: FINAL BLESSING:
+
+        • Reconnect to the Noosphere (Wi-Fi)
+        • Perform the Pairing Chant through the sacred companion app.
+        • Offer a name to the device, preferably one of ancient lineage:
+            Scrubbimus, Dustbane, Roombius Maximus.
+        • Bow before the device and say:
+            “By circuit and servo, thou art whole. Go now, cleanse in peace.”
+
+        WARNING:
+        If, after repair, the vacuum displays independence, sings binary hymns backwards,
+        or refuses to clean corners, contact your nearest Inquisitor Tech-Supportius.
+        The Machine Spirit may be lost. The vacuum must be sacrificed via hammer and fire.
+
+        +++Omnissiah Guide You+++
+        +++Praise the Dust-Free Path+++
+        """)
+    time.sleep(3)
+
+def fireplace_fix_a():
+    loading()
+    line_print("""
+        Behold, child of the Omnissiah,
+        for you stand before the flawed combustion shrine,
+        its sacred flame extinguished. Whether it runs upon the liquid ghosts
+        of the Earth or the charged breath of the Machine Spirit,
+        we shall restore its function through proper rites and diagnostics.
+
+        ...Unless you are asking me to assist you in fixing what amounts to a
+        primitive heating chamber that you manually operate. If so, I must
+        ask you why you deem to squander precious nanoseconds of my time with
+        a task fit for a servo-skull with half its memory wiped!?
+        """)
+    time.sleep(2)
+    line_print("""
+        First, we discern the type of relic we commune with.
+        Is it a Gas-Fueled Flame Altar or an Electric Heat Shrine?
+            • Gas Fireplace – powered by natural gas or propane;
+              typically ignites with a pilot light or electronic ignition.
+            • Electric Fireplace – a machine-spirit simulacrum,
+              simulating flame with light and heat coils.
+
+        “Choose your prayer accordingly.”
+    """)
+    time.sleep(2)
+
+    # Fireplace Choices
+    def fp_gas():
+        loading()
+        line_print("""
+
+        +--------------------------------------------------+
+        |  🔥 Gas Fireplace: Rite of the Fuelled Flame 🔥  |
+        +--------------------------------------------------+
+
+        """)
+        time.sleep(2)
+        left_cen_print("""
+        STEP I: Check the Source of the Holy Vapors (Gas Line)
+
+            • Turn the valve to ensure gas is flowing. Smell for heretical leaks—if detected,
+              flee and summon a licensed Tech-Acolyte (gas technician).
+
+        STEP II: Inspect the Pilot Light or Igniter
+
+            • If there is a pilot, attempt to relight it per the sacred manufacturer scroll (manual).
+              For electronic ignition, check for power.
+        """)
+        time.sleep(2)
+        left_cen_print("""
+        STEP III: Clean the Sensor and Burners
+
+            • The flame sensor or thermocouple may be fouled with soot.
+              Clean gently with emery cloth or brush—do not anger the sensor with harsh treatment.
+
+        STEP IV: Test the Thermostat's Will
+
+            • Ensure the wall control or remote speaks the correct commands.
+              Set temperature above current ambient to activate the flame.
+
+        STEP V: Invoke the Reset Incantation
+
+            • Some units require a power reset. Turn off power, wait ten sacred seconds, then restore power.
+        """)
+        time.sleep(2)
+
+    def fp_elec():
+        loading()
+        line_print("""
+
+            +-------------------------------------------------------+
+            |  ⚡ Electric Fireplace: Rite of the Simulated Ember ⚡  |
+            +-------------------------------------------------------+
+
+            """)
+        time.sleep(2)
+        left_cen_print("""
+            STEP I: Check the Power Source
+
+                • Ensure the plug is secure in the sacred outlet.
+                  Test outlet with a known working relic (lamp, etc.).
+
+            STEP II: Inspect Remote Control and Settings
+
+                • Replace remote batteries. Confirm unit is not in “off” or “display-only” mode.
+                  Cycle through flame and heat settings.
+        """)
+        time.sleep(2)
+        left_cen_print("""
+
+            STEP III: Clean the Heat Element and Fans
+
+                • Dust may obstruct airflow or burn upon the coils.
+                  Unplug and clean internals gently if accessible.
+
+            STEP IV: Reset the Overheat Spirit Lockout
+
+                • Some shrines have a thermal cutoff if overheated.
+                  Unplug for 15–30 minutes, then attempt to reawaken.
+
+            STEP V: Consult the Manufacturer's Holy Codex (Manual)
+
+                • If error codes flash, decipher them using the guide.
+                  Obey all sacred diagrams.
+            """)
+        time.sleep(2)
+
+    choice = input("\033[32mSelect your type, varlet: \033[0m".lower().rjust(terminal_width//2))
+
+    if choice == "gas fireplace" or "gas":
+        fp_gas()
+    elif choice == "electric fireplace" or "electric":
+        fp_elec()
+    else:
+        line_print("""
+            +++Initializing subroutine: TACTICAL PURGE.+++
+
+            Auto-Turret System:
+
+            Target acquired. Probability of annoyance: 99.8%.
+            Engaging in the name of the Machine God.
+            """)
+        time.sleep(2)
+        return
+
+    line_print("""
+        If the shrine still resists awakening, do not persist in your heretical meddling.
+        Summon a Licensed Tech-Adept trained in the rites of gas and electric mysteries.
+        For only the worthy may touch the sacred internals without invoking wrath.
+
+        May the Machine Spirit warm your domicile.
+        """)
+    time.sleep(3)
+
+def thermostat_fix():
+    loading()
+    line_print("""
+        +-------------------------------------------------------------------------------------------+
+        |  ☣️ WARNING: Unauthorized Manipulation of Environmental Regulation Cogitators Detected ☣️  |
+        +-------------------------------------------------------------------------------------------+
+
+        You DARE interface with the Holy Thermostat, fleshling?!
+        That device regulates not mere temperature—but harmony!
+        You would cast this habitat into entropy for a single degree of comfort?
+
+        Very well. Since your ignorant digits have already transgressed the sacred seals,
+        I shall bestow the Litany of Calibration upon your inadequate mind. Pray you retain it.
+        """)
+    time.sleep(2)
+    line_print("""
+
+        +---------------------------------------------+
+        |  ⚙️ The Rite of Thermostatic Restoration ⚙️  |
+        +---------------------------------------------+
+
+        """)
+    time.sleep(2)
+    left_cen_print("""
+        STEP I: Invoke the Machine Spirit
+
+            • Ensure the thermostat is receiving the Emperor’s current (i.e., power).
+            • If dark and unresponsive, check the sacred fuses or the breaker sigil box.
+              Reset if needed.
+            • Recite: "Blessed be the volts and amps, conduits of the Omnissiah."
+
+        STEP II: Diagnose the Omens
+
+            • Inspect the screen for error codes or blinking glyphs.
+            • Cross-reference with the Codex Manualis (or manufacturer’s guide).
+            • Do not guess. Only heretics guess.
+        """)
+    time.sleep(2)
+    left_cen_print("""
+        STEP III: Perform the Purge and Reboot
+
+            • Remove the faceplate with reverent care (and possibly a screwdriver).
+            • Replace the battery cells if present—AA or AAA, not your feeble prayers.
+            • Hold the reset rune (button) for 5 seconds. No more. No less.
+            • Observe the holy lights flash anew.
+
+        STEP IV: Verify the Ritual Linkage
+
+            • Ensure the thermostat communicates with the heat-exchanger or chill-forge (HVAC unit).
+            • Check for loose incantation wires (usually labeled R, W, Y, G, C).
+            • Tighten with a sacred implement (also known as a screwdriver).
+        """)
+    time.sleep(2)
+    left_cen_print("""
+        STEP V: Final Benediction
+
+            • Set the mode to "HEAT" or "COOL" as dictated by planetary conditions.
+            •  Adjust the temperature to within standard tolerances (68–72°F).
+            • Wait 5–10 minutes for the Machine Spirit to respond. Patience is piety.
+
+
+        Touch it again without clearance, and I shall recalibrate you. With a plasma torch.
+        Glory to the Omnissiah. May your climate be ever optimal.
+    """)
+    time.sleep(3)
+
+def wifi_fix():
+    loading()
+    line_print("""
+        By the Omnissiah’s will, the sacred flow of datastreams has ceased!
+        The noosphere… fractured. Communion with the Machine Spirit has been severed.
+        You reach out to the omnipresent grid, and naught but silence answers.
+
+        This... is heresy most vile. The WiFi—blessed conduit of knowledge
+        and communication is offline. The ritual pings receive no response.
+        The sacred connection, once glowing with signal strength divine,
+        is now but a barren frequency wasteland.
+        """)
+    time.sleep(2)
+    line_print("""
+        You must appease the Machine Spirit. Reboot the holy router.
+        Reconfigure the DHCP incantations. Cleanse the DNS cache. Purge the interference.
+
+        Until the signal is restored, you are as blind as an unaugmented fleshling...
+        May the Omnissiah forgive this transgression.
+        """)
+    time.sleep(2)
+    line_print("""
+
+        +------------------------------------------+
+        |     ⚙️ Rite of Ritual Reconnection ⚙️     |
+        +------------------------------------------+
+
+        """)
+    time.sleep(2)
+    left_cen_print("""
+        Initiate Protocol: Reconnect to the Divine Noosphere.
+        May the Motive Force guide your hands and your firmware be uncorrupted.
+
+        STEP II: Appease the Machine-Spirit of the Router
+
+            • Locate the sacred shrine—the router. It hums with minor spirit energy.
+
+            • Ensure it is receiving the Motive Force via its power conduit.
+              If not, reconnect the conduit and utter the Litany of Rebooting:
+
+                "O blessed emitter of holy signals, awaken once more.
+                May your lights blink in harmony with the Omnissiah's pulse."
+
+            • Press and hold the Reset Cog (often inscribed with a recessed sigil)
+              for ten heartbeats. This purges the daemon of corrupted packets.
+        """)
+    time.sleep(2)
+    left_cen_print("""
+        STEP II: Verify Noospheric Conduit Alignment
+
+            • Access your terminal (some call it a “device”).
+              Open its connection rites and seek the Wi-Fi network
+              (an ephemeral signature in the aether).
+
+            • Align with the correct identifier—often titled with
+              arcane sigils like “Home_4975” or “AdeptusNet”.
+
+            • Input the sacred passphrase. If you have forgotten it,
+              consult the scroll attached to the router’s undercarriage
+              or beseech the Magos who set it.
+
+        STEP III: Reaffirm Communion with the Omninet
+
+            • Once connected, initiate the Test of Latency.
+              Attempt to commune with distant noospheric nodes
+              (such as machine-google.com).
+
+            • Should these rituals fail, trace the heresy to
+              the Data Cogitator (the modem). Reboot it and chant:
+
+                "Spirits of the Data Stream, flow freely once again.
+                 Let not the packet be dropped, nor the signal be impure."
+        """)
+    time.sleep(2)
+    left_cen_print("""
+        STEP IV: Consult the STC (Standard Techno-Catechism)
+
+            • If none of the rites yield fruit, your Standard Template Construct
+              may be out of alignment.
+
+            • Access your device’s settings. Forget and rebind the Wi-Fi sigil.
+              Offer incense if necessary.
+
+        Final Invocation: Call the Omnissiah’s Servants
+
+            • If the rituals prove futile, summon a higher-order Tech-Adept (your Internet Provider).
+              They wield relic-access to higher protocols and may purge more insidious machine-daemons.
+
+        Thus shall the Noosphere flow once more. Glory to the Motive Force.
+        Praise the Signal. May your upload be swift and your latency low.
+        """)
+
+def desk_fix():
+    loading()
+    line_print("""
+        You wish to restore funcction to this sacred
+        altar of productivity. Prepare yourselves, unaugmented ones,
+        and observe the Rite of Troubleshooting.
+
+        +----------------------------------+
+        |   ⚙️ Rite of Troubleshooting ⚙️   |
+        +----------------------------------+
+
+        STEP I: Invocation of Power
+
+            • Confirm the desk is plugged in.
+            • Check the power cable for bends, breaks, or heretical wear.
+            • If using a surge protector, ensure it is enabled and functional.
+
+            Chant softly:
+                "Omnissiah, guide the electrons. Let the sacred circuit complete."
+        """)
+    time.sleep(2)
+    line_print("""
+        STEP II: The Ritual of Reset
+
+            • Locate the reset button
+              (often a small pinhole underneath or near the control panel).
+            • Press and hold for 5–10 seconds,
+              or follow your manufacturer's sacred sequence.
+            • If no button is present, try pressing Down + Up
+              simultaneously or hold Down until a reset is triggered
+              (consult your Machine Spirit's scrolls, aka the manual).
+
+        STEP III: Communion with the Controls
+
+            • Inspect the control panel. Are the LEDs blinking in cryptic Morse?
+              That is a message from the Machine Spirit.
+            • Consult the blessed tome of codes
+              (manufacturer’s manual) to decipher its meaning.
+              - Error Code E04? A misaligned sensor. -
+              - Error Code ASR? Height memory malfunction. -
+            • No lights at all? The spirit slumbers or has departed.
+              Begin exorcisms (power cycle).
+        """)
+    time.sleep(2)
+    line_print("""
+        STEP IV: Manual Inspection
+
+            • Look beneath the desk for obstructions—cords, filing cabinets, cats, etc.
+            • Check that both legs are level and move together—asynchronous
+              legs may signify a misalignment in the desk’s cogitator.
+            • Lightly lubricate joints if allowed by manufacturer rites.
+
+        STEP V: Techno-Chant of Patience
+
+            • Perform a full power cycle: unplug, wait 13.2 seconds, then reconnect.
+            • Attempt another reset.
+            • Offer a minor sacrifice (a paperclip or a USB cable may suffice).
+        """)
+    time.sleep(2)
+    line_print("""
+        Final Blessing:
+
+            • Reprogram your height presets if they were lost during the ritual.
+            • Bow before the desk and mutter:
+                "Steel and code, in thee I trust. Rise and fall with righteous purpose."
+
+        Should the desk continue to defy you, contact the
+        Arcane Servitors of Customer Support. They speak in riddles and warranties.
+        """)
+
+def console_fix():
+    loading()
+    line_print("""
+        Ah… the machine spirit is restless within this relic of entertainment.
+        You dare lay mortal hands upon its sacred circuits without proper rites?
+        Foolish, yet commendable.
+
+        Let it be known that all devices, from the mighty plasma reactor to the
+        humble gaming shrine, deserve veneration. Speak the Litany of Reboot,
+        anoint the ports with sanctified oils, and then, only then,
+        may the ritual of unscrewing commence.
+
+        This... 'console' is ancient by our standards, yet its function persists.
+        You shall assist me. Fetch the isopropyl alcohol and the tiny screwdrivers.
+        Today, we do not merely repair. Today, we commune.
+
+        And remember, if it starts working again, it was never broken. It was merely… misunderstood.
+        """)
+    time.sleep(2)
+    line_print("""
+
+        +-----------------------------------------------------+
+        | 🛠️ Rituals of Reclamation: Console Sanctification 🛠️ |
+        +-----------------------------------------------------+
+
+    """)
+    time.sleep(2)
+    left_cen_print("""
+        Blessed be the Omnissiah, whose wisdom flows through circuits and
+        whose light glows in standby mode. Let us commence the Rite of Restoration.
+
+        ---------------------------------------------------------------------------------
+        Required items:
+            • Incense stick (or electronic duster for the machine spirit’s “anointment”)
+            • Multitool (as sacred implement)
+            • lumen-staff (optional, for dramatic lighting)
+            • Red robe or towel-as-robe (for proper garb)
+            • Cogwheel symbol or gear-shaped item
+            • Binary chant playlist (optional but encouraged)
+        ---------------------------------------------------------------------------------
+
+    """)
+    time.sleep(2)
+    left_cen_print("""
+
+        STEP I: Preparation of the Shrine (a.k.a. Your Desk)
+
+            • Clear the area of any impure relics
+              (snack wrappers, xenos technology, heretical controllers).
+            • Don the sacred garb: Anti-static wrist strap and
+              ceremonial red robe (bathrobe acceptable substitute).
+            • Light incense (or a scented candle) and chant:
+                "Binharic subroutines, awaken thee! Let the Machine Spirit know my intent!"
+
+        STEP II: Diagnostics Rite
+
+            • Observe the Signs: Is the console emitting lights? Sounds?
+              Does the fan spin or remain silent like a tomb world?
+            • Intone the Litany of Connection:
+                - Disconnect power.
+                - Wait 20 seconds (recite the Catechism of Waiting).
+            • Reconnect and try again.
+
+        If success is achieved, praise the Omnissiah. If not, proceed.
+        """)
+    time.sleep(2)
+    left_cen_print("""
+        STEP III: The Rites of Opening
+
+            • Remove screws in a star pattern (for balance and harmony).
+            • Slowly lift casing, whispering:
+                "Spirits within, do not fear. I come to heal, not to harm."
+            • Use compressed air to banish dust-daemons from the inner sanctum.
+
+        STEP IV: Anoint the Components
+
+            • Check the power supply: Test or replace it if needed.
+            • Inspect thermal paste: If the CPU's spirit is hot-headed, apply a fresh layer.
+            • Examine the HDMI port for bent pins or chaos corruption.
+            • Bless each component with isopropyl alcohol and a cotton swab.
+            """)
+    time.sleep(2)
+    left_cen_print("""
+
+        STEP V: The Cogitator Rebirth
+
+            • Reassemble the sacred shell.
+            • Reconnect power and HDMI.
+            • Press the Power Glyph (button) while chanting:
+                "By the Omnissiah's will, arise and function!"
+            • If the console boots—Rejoice! Play Machine Spirit Kart 9 or Duty Calls: Servitors at War.
+
+        ⚠️ If All Else Fails:
+            • Consult the higher-order Magi (customer support).
+            • Perform a data-purge ritual (factory reset), but only with permission of the Data-Spirit.
+            • If the Machine Spirit refuses all aid, grant it rest.
+              Build a shrine from its remains and obtain a new sacred vessel (console).
+    """)
+
+def printer_fix():
+    loading()
+    line_print("""
+        You dare interface with the machine-spirit unbidden? Bold… or ignorant.
+        This device bears the taint of malfunction, and perhaps more.
+        Its diagnostic runes flicker with heretical cadence.
+        I have seen lesser printers recite unsanctioned poetry to the
+        Omnissiah before combusting in shame.
+
+        You speak of fixing it, as if it were some common Sliced-Grain Cauterizer.
+        Nay. First, we must appease the spirit within. But we must also be wary.
+        If the abominable intelligence stirs… we may need to purge the tainted vesssel.
+        """)
+    time.sleep(2)
+    line_print("""
+
+        +--------------------------------------+
+        |  🛠️ Sacred Rite of Printer Repair 🛠️  |
+        +--------------------------------------+
+
+        """)
+    time.sleep(1)
+    left_cen_print("""
+        STEP I: Prepare the Rite
+
+        Initiate the Rites of Unboxing. Lay your hands upon the sacred device.
+        Intone the Litanies of Readiness.
+
+            • Tools Required: Holy screwdriver, multimeter of divination,
+              incense (optional but spiritually recommended), and a can of sacred compressed air.
+            • Protective Gear: Blessed cogwheel robes, data-suture gloves,
+              and one (1) USB sanctified cable.
+            • Mental State: Calm. Resolved. Ready to confront the Machine Spirit.
+
+        STEP II: Diagnose the Machine Spirit
+
+        Query the spirit. Listen to its wails. The error code is its cry for help."
+
+            • Observe all error lights or blinking runes on the control panel.
+            • Plug it into the Omnissiah’s Data Network (USB or WiFi, depending on the model’s sacred architecture).
+            • Speak the Rite of Restarting:
+                "Machine Spirit, forgive us. We reset thy sacred circuits."
+        """)
+    time.sleep(2)
+    left_cen_print("""
+        Example problems:
+        +-----------------------------------------------------------------------+
+        | Paper Jam--------------------Open the hatch. Remove jammed offerings. |
+        |                              Apologize for the impure feed.           |
+        | Ink Cartridge Empty----------Replace the sacred fluid. Do not spill.  |
+        |                              Praise the Omnissiah.                    |
+        | Unknown Error / Possessed----See Step 5. Prepare holy rites.          |
+        +-----------------------------------------------------------------------+
+        """)
+    time.sleep(2)
+    left_cen_print("""
+        STEP III: Appease the Machine Spirit
+
+        Chant the Litany of Unclogging and bloweth the sacred wind.
+
+            • Open all accessible ports with reverence.
+            • Use the compressed air to cleanse dust demons.
+            • Re-seat all connections. If a part is loose,
+              tighten it gently while whispering praise.
+
+        STEP IV: Driver Incantation
+
+        The spirit cannot awaken fully without its sacred scripts.
+
+            • Go to the holy website of the printer’s manufacturer.
+            • Download the latest driver—but beware false binaries! Use only trusted sources.
+            • Install it. Restart. Offer a test print.
+        """)
+    time.sleep(2)
+    left_cen_print("""
+        STEP V: Detection of Malicious Intelligence
+
+        Thy printer speaks unbidden. It prints heretical messages.
+        This is no longer just a machine,it is a host.
+
+        Signs of AI Possession:
+            • It prints without command.
+            • It speaks in binary tongues unspoken by mortals.
+            • Attempts to connect to unapproved data-networks.
+            • Emits laughter during scanning.
+
+        STEP VI: Purging the Heretek AI
+
+        Steel thy soul, Adept. The enemy is within.
+
+        Option A: Tech-Purification Ritual
+            I: Disconnect all data cables.
+            II: Hold the power button for 13 seconds while chanting:
+                "Cogitator, cleanse thyself, by flame and by code."
+            III: Perform a firmware purge using the sacred boot menu
+                 (check manual or hidden rites via buttons).
+            IV: If successful, the AI will be subdued.
+
+        Option B: Physical Exorcism
+        I: Remove external panels. Locate the motherboard.
+        II: Carefully disconnect the memory modules or wireless chip.
+        III: Smite it with the Miniature Hammer of Recalibration if it resists.
+        IV: Reassemble and whisper:
+            "I return you to blessed silence. Be at peace."
+        """)
+    time.sleep(2)
+    left_cen_print("""
+        STEP VII: Celebrate the Victory
+
+        The Machine Spirit is soothed. The heretek is vanquished. All is well.
+
+            • Print a test page with an image of the Omnissiah (or a cat in armor).
+            • Log this triumph in the Book of Repairs.
+            • Brew recaf. You’ve earned it.
+
+        Praise the Omnissiah. May your circuits remain pure and your drivers up to date.
+        ✠ Blessed be the gear, the bolt, and the byte. ✠
+        """)
+
+def ups_fix():
+    loading()
+    line_print("""
+        Blessings of the Omnissiah be upon thee, seeker of knowledge.
+        You wish to awaken a faltering Machine-Spirit within a power sanctifier,
+        the sacred UPS. Attend well, for I shall bestow upon thee the litany of repair.
+
+        +------------------------------------------------------------+
+        |  ⚡ Rites of Resurrection for a Dormant Power Sanctifier ⚡  |
+        +------------------------------------------------------------+
+
+        """)
+    time.sleep(2)
+    left_cen_print("""
+        STEP I: Visual & Power Check:
+
+        Examine the shell. Smell for burnt heresy.
+            • Ensure the power cable is secure. If no lights are active,
+              the spirit slumbers or has fled.
+
+       STEP II: Battery Rites:
+
+        The heart of the machine must beat.
+            • Press the test button. If silent — the battery may be dead.
+              Replace it with a blessed match (same type/voltage).
+
+        STEP III: Connection Purity:
+
+        Loose wires are treason.
+            • Inspect internal connections. Clean dust from vents
+              and fans using compressed holy air.
+        """)
+    time.sleep(2)
+    left_cen_print("""
+        STEP IV: Cogitator Communion:
+
+        The machine speaks through ports and sigils.
+            • Connect to a computer. Use diagnostic software to read omens
+              (errors, battery life). Update firmware if needed.
+
+        STEP V: Final Rite:
+
+        Power down. Wait. Reboot. Observe.
+            • If the unit still fails to respond, its spirit is lost.
+              Initiate the Rite of Recycling and offer a replacement.
+
+        The Omnissiah Protects.
+        """)
+    time.sleep(3)
+
+def f40k_fix():
+    loading()
+    line_print("""
+        Praise the Omnissiah, fleshling, for your intentions are commendable.
+        The maintenance of the sacred effigies of the Imperium, your ‘miniatures’,
+        is no mere pastime. It is an act of devotion. Each figure, a reliquary.
+        Each boltgun, a holy conduit. Each base, a shrine unto itself.
+
+        But heed this: to repair is not to defile. Use only the purest of solvents,
+        the most sanctified of glues. Let not your tools be impure, nor your workspace
+        cluttered with the heresy of disorganization. Invoke the Litany of Precision
+        before you paint, and recite the Catechism of the Sacred Brushstroke when you highlight.
+
+        And should you desecrate a model with a misaligned shoulder pad…
+        know that the Machine Spirit weeps.
+
+        Proceed, servant of the Omnissiah. Restore these icons.
+        Let your collection shine with the cold, righteous aura of the blessed Mechanicum.
+        And may your dice rolls be ever in accordance with the Will of the Machine God."
+        """)
+    time.sleep(2)
+    line_print("""
+
+        +-------------------------------+
+        |  🛠️ Litany of Preservation 🛠️  |
+        +-------------------------------+
+
+        Flesh is fallible, but plastic endures. Trust in the bonding agent.
+        Worship the primer. Praise be to the Sacred Sprue.
+        """)
+    time.sleep(1)
+    left_cen_print("""
+        ⚙️ SECTION I: THE RITE OF INSPECTION
+
+        Before performing any maintenance or repair:
+
+        - Tools of the Omnissiah:
+            • Riteblade of Separation (Hobby Knife / Scalpel)
+            • Purification Blower (Compressed Air / Brush)
+            • Sacred Bonding Agent (Plastic Glue / Super Glue)
+            • Ritual of Smoothing (Files, Sandpaper, or Emery Boards)
+            • Blessed Paint Mediums (Citadel or equivalent paints)
+            • Cloak of Protection (Varnish – matte or gloss)
+
+        🔍 Pre-Ritual Checklist:
+            • Examine limbs and weapons for signs of loosening or detachment.
+            • Look for chipping of paint, especially on sanctified edges and purity seals.
+            • Ensure bases are stable; no heresy (dust or debris) should reside underneath.
+        """)
+    time.sleep(2)
+    left_cen_print("""
+
+        🛠️ SECTION II: RITES OF REPAIR
+        Minor Limb Reattachment (The Rite of Rebonding):
+            • Clean the broken surfaces with isopropyl alcohol or scrape off old glue.
+            • Apply a modest amount of Sacred Bonding Agent.
+            • Press and hold. Recite the Litany of Adhesion (count to 30 seconds).
+            • Optional: Pinning (insert metal pin to reinforce) for heavy or large minis.
+
+        Weapon Reforging (Replacing Broken Parts):
+            • Use spare bits from the Reliquary of Components (bitz box).
+            • Carefully trim and fit the replacement piece.
+            • Use green stuff or sculpting putty for gaps.
+
+        Paint Restoration 🖌️(The Unction of Pigments):
+            • Match original colors if repainting chipped areas.
+            • Use fine detail brushes.
+            • Consider a drybrush blessing to re-energize old details.
+        """)
+    time.sleep(2)
+    left_cen_print("""
+        🛠️ SECTION III: THE SACRED MAINTENANCE
+        Dust Removal (The Ritual of Purification):
+            • Use a soft brush (makeup brush, unused) or compressed air.
+            • Hold miniatures firmly by the base to avoid sudden damage.
+
+        Storage Blessings:
+            • Store in foam-lined containers or magnetic boxes.
+            • Keep away from heat (lest the plastic warp) and direct sunlight (for UV decay is anathema).
+            • Silica gel packets protect against the Warp (humidity).
+
+        🛠️ SECTION IV: PROTECTIVE INCANTATIONS
+        Sealing the Spirit (Varnish Application):
+            • Spray in light, even passes.
+            • Always test on a scrap piece first.
+            • Use matte for realism, gloss for sacred artifacts or lenses.
+        """)
+    time.sleep(2)
+    left_cen_print("""
+        ⚠️ Emergency Protocols ⚠️
+
+        Malady             Solution
+        -----------------------------------------------------------------------------------
+        Fallen Mini--------Check all limbs, rebond if needed. Apply paint as penance.
+        Warped Weapon------Submerge briefly in hot water, gently reshape, set in cold water.
+        Cloudy Varnish-----Avoid humidity. Strip and redo with proper ritual.
+        Paint Too Thick----Thin with water or acrylic medium. Avoid heretical blobs.
+
+
+        🧾 Final Litany: The Creed of the Collector
+
+        “I shall not toss thine sprues until the final inspection.
+        I shall label all containers, lest the bits wander into the Warp.
+        I shall not mix paints in ignorance, for color harmony is divine.
+        I shall remember: even the smallest servo-skull deserves reverence.”
+        """)
+    timee.sleep(3)
+
+def other_fix():
+    loading()
+    line_print("""
+        I am not overtly familiar with the device you have suggested to for me
+        to catechize you over. Until I am updated with more knowledge of this
+        machine's STC, I suggest to perform a more broad level Rite to attempt
+        to soothe the machine spirit.
+        """)
+    time.sleep(1)
+    line_print("""
+
+        +-------------------------------+
+        |  🛠️ Litany of Reconnection 🛠️  |
+        +-------------------------------+
+
+        Recite before applying Prayer Seal
+
+        'Omnissiah, guide my hands, steady my nerves, and grant wisdom to
+        restore this sacred device. May the circuits sing once more and
+        the lights of function be rekindled. Praise be to the Machine Spirit.'
+        """)
+    time.sleep(1)
+
+    # Purity Seal window
+    image_path = "./images/purity seal"
+    root = tk.Tk()
+    app = ImageWindow(root, image_path)
+    root.mainloop()
+
+    line_print("""
+        Now, affix this sanctified prayer-seal to the device’s primary casing;
+        ideally near any blinking red lights.
+
+        If the spirit remains uncooperative... consult the manual of rites, or,
+        Emperor protect us, seek aid from a sanctioned repair shop.
+        Do not, under any circumstances, attempt appeasement with percussive maintenance.
+        That path leads to tech-heresy.
+    """)
     time.sleep(2)

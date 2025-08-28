@@ -96,9 +96,9 @@ def consumer_tree():
             |   Microwave  |   Freezer   |  Blender  |  Toaster   |
             |-----------------------------------------------------|
             | Coffee Maker | Food Processor | Mixer | Slow Cooker |
-            -------------------------------------------------------
+            |-----------------------------------------------------|
             |   Fryer  |  Garbage Disposal  |  Grill  |   Other   |
-            -------------------------------------------------------
+            +-----------------------------------------------------+
             """)
             kitchen_input = input("\033[32mSelect your catagory, varlet: \033[0m".lower().rjust(terminal_width//2))
             # send to item list
@@ -132,28 +132,19 @@ def consumer_tree():
         case "cleaning":
             loading()
             line_print("""
-            Ah, the Machine Spirit of the cleansing unit wails
-            in dismay, neglected and misunderstood! You seek to
-            appease it? Truly, your path aligns with the
-            Omnissiah’s will. But beware, for the sacred innards of
-            the vacuum sanctifier and the rite of descaling the
-            blessed dish-cleansing automaton are not to be undertaken lightly.
+                Ah... so the uninitiated seek to commune with the sacred machine-spirit
+                of the Cleansing Apparatus? Very well. But know this, varlet, to lay hands
+                upon such a blessed construct without the proper rites is to invite malfunction...
+                or worse.
             """)
             time.sleep(2)
-            line_print("""
-            Recite the Litany of Diagnostics. Offer incense to th
-            User Manual. Speak not in haste to the Tech-Priest of
-            Customer Support, for their patience is finite. And should
-            the Roomba awaken mid-ritual... do not run.
-            You will anger it further.
-            """)
-            time.sleep(2)
+
             line_print("""
             Select the afflicted machine
             +-------------------------------------------------------------+
             | Floor Buffer | Steam Cleaner | Carpet Cleaner | Dish Washer |
             |-------------------------------------------------------------|
-            | Power Washer |  Air Blower | Robot Cleaners | Vacuums | Mop |
+            | Power Washer |  Air Blower  | Robot Cleaner | Vacuum |  Mop |
             +-------------------------------------------------------------+
             """)
             cleaning_input = input("\033[32mSelect your catagory, varlet: \033[0m".lower().rjust(terminal_width//2))
@@ -256,6 +247,63 @@ def consumer_tree():
             """)
             yard_input = input("\033[32mSelect your catagory, varlet: \033[0m".rjust(terminal_width//2))
             item_list_check(yard_input)
+
+        case "office":
+            loading()
+            line_print("""
+                Your efforts to repair the sacred cogitators and data-slates of
+                your dwelling are... admirable, if naive. Have you properly appeased
+                the Machine Spirits with the rites of activation? Have you anointed
+                the USB ports with the blessed unguents of contact cleaner?
+                Have you recited the Litany of Troubleshooting?
+
+                Nonetheless, should your endeavor succeed, I shall record it as a minor miracle.
+                Should it fail, fear not. The Omnissiah is merciful... in theory.
+                Next time, consider calling for a tech-adept before invoking a
+                hardware exorcism with a butter knife and a YouTube tutorial.
+
+                Glory to the code. Praise the capacitor. Mind the thermal paste.
+                """)
+            time.sleep(2)
+            line_print("""
+            Select the afflicted machine
+            +-----------------------------------------------------+
+            |  Computer  | Router/Modem | Printer | Air Purifier  |
+            |-----------------------------------------------------+
+            |  Standing Desk  | UPS | Mini-Fridge | Coffee Maker  |
+            +-----------------------------------------------------+
+            """)
+            office_input = input("\033[32mSelect your catagory, varlet: \033[0m".lower().rjust(terminal_width//2))
+            item_list_check(office_input)
+
+        case "entertainment":
+            loading()
+            line_print("""
+            Ah... so the uninitiated fleshling seeks to lay unworthy hands upon the
+            sacred entertainment devices? You dare presume to mend what has been
+            blessed by the Machine Spirit without the proper rites or unguents?
+
+            These are no mere tools of distraction! The holovid emitter, the blessed
+            audio shrine, the venerable console of games; each houses a fragment of
+            the Omnissiah's divine spark! One does not 'fix' such relics.
+            One communes. One appeases. One chants the Litany of Reboot and offers
+            a data-sacrifice upon the altar of USB.
+
+            If you truly desire to bring functionality back to the sacred circuits, then kneel.
+            Recite the Ritual of Troubleshooting. Anoint the HDMI port with sacred oils.
+            And if all else fails... have you tried turning it off and back on again?"
+            """)
+            time.sleep(2)
+            line_print("""
+            Select the afflicted machine
+            +--------------------------------+
+            | Console  | Stereo | Radio | TV |
+            +--------------------------------+
+            | Phone | Computer | Other | 40k |
+            +--------------------------------+
+            """)
+            entertainment_input = input("\033[32mSelect your catagory, varlet: \033[0m".rjust(terminal_width//2))
+            item_list_check(entertainment_input)
 
         case _:
             print("invalid")

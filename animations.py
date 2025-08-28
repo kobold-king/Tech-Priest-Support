@@ -46,9 +46,16 @@ def loading(duration=3):
             sys.stdout.write("\r" + centered)
             sys.stdout.flush()
             time.sleep(0.1)
-    sys.stdout.write(" ") # Clear the line and add newline
+    sys.stdout.write("\r" + " " * 20 + "\r")  # Overwrite with spaces to clear the line # Clear the line and add newline
     sys.stdout.flush()
 
-def user_choice():
+def left_cen_print(text):
+    terminal_width = shutil.get_terminal_size().columns // 4
+    split_text = text.splitlines()
+    for line in split_text:
+        colored = " " * terminal_width + (f"\033[32m{line}\033[0m")
+        print(colored)
+        time.sleep(.5)
 
+def user_choice():
     return input
