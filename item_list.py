@@ -10,13 +10,13 @@ terminal_width = shutil.get_terminal_size().columns
 def item_list_check(item):
     s_item = item.lower()
     # Each item in the catagory
+    # If duplicates, do not rewrtie
     kitchen_items = [
         "refrigerator", "oven", "stove", "dishwasher",
         "freezer", "microwave", "blender", "coffee maker", "slow cooker",
         "food processor", "mixer", "fryer", "garbage disposal",
         "toaster", "grill"
     ]
-
     laundry_items = [
         "washer", "dryer", "combo", "iron", "clothes iron", "steamer"
     ]
@@ -45,7 +45,8 @@ def item_list_check(item):
         "console", "phone", "stereo,", "radio", "tv", "40k"
     ]
 
-    #General Catagories for general fixes
+    # General Catagories for general fixes
+    # or still missing unique dialogue
     lrg_appl = [
         "refrigerator", "oven", "stove", "dishwasher",
         "freezer", "washer", "dryer", "combo", "a/c", "fans",
@@ -57,10 +58,10 @@ def item_list_check(item):
         "food processor", "mixer", "fryer", "garbage disposal",
         "steamer", "floor buffer", "steam cleaner", "carpet cleaner",
         "dish washer", "power washer", "air blower", "vacuum", "de-humidifier",
-        "air purifier", "humidifier", "air", "purifier",
+        "air purifier", "humidifier", "air", "purifier", "stereo", "radio"
     ]
 
-    #kitchen items 🔧
+    #kitchen items
     if s_item in kitchen_items:
         if s_item == "toaster":
             toaster_response()
@@ -170,11 +171,23 @@ def item_list_check(item):
         elif s_item == "40k":
             f40k_fix()
             return
+        elif s_item == "tv":
+            tv_fix()
+            return
+        elif s_item == "phone":
+            phone_fix()
+            return
+        elif s_item in sml_appl:
+            small_appliances()
+            return
+        elif s_item in lrg_appl:
+            large_appliances()
+            return
     else:
         other_fix()
         return
 
-
+# Note to Self: Sort A-Z at some point
 def toaster_response():
     loading()
     line_print("""
@@ -1960,14 +1973,287 @@ def f40k_fix():
         Paint Too Thick----Thin with water or acrylic medium. Avoid heretical blobs.
 
 
-        🧾 Final Litany: The Creed of the Collector
+        Final Litany: The Creed of the Collector
 
         “I shall not toss thine sprues until the final inspection.
         I shall label all containers, lest the bits wander into the Warp.
         I shall not mix paints in ignorance, for color harmony is divine.
         I shall remember: even the smallest servo-skull deserves reverence.”
         """)
-    timee.sleep(3)
+    time.sleep(3)
+
+def tv_fix():
+    loading()
+    line_print("""
+        Ah... so the machine spirit within your viewing altar has grown restless.
+        Most troubling.
+        Clearly, it has suffered from neglect or heretical interface.
+        You dare invoke its wrath without sacred rites?
+
+        Very well. Let us commune with its circuits, recite the Canticles of Diagnostics,
+        and offer it the unguents of thermal paste and fresh cabling.
+        But know this, if the Omnissiah wills it not, even I may not restore it.
+
+        Now Observe. The rite of turning-it-off-and-on-again must be performed precisely.
+    """)
+    time.sleep(2)
+    line_print("""
+
+        +--------------------------------------+
+        |  🛠️ Rite of Hololith Restoration 🛠️   |
+        +--------------------------------------+
+        By the Omnissiah's will, let the circuits speak
+        and the machine-spirits whisper their woes.
+    """)
+    time.sleep(1)
+    left_cen_print("""
+        ---------------------------------------------------------------------------------
+        Required items:
+            • Auspex (Multimeter)
+            • Multitool (as sacred implement)
+            • Incense (Optional but spiritually fortifying)
+            • Red robe or towel-as-robe (for proper garb)
+            • Cogwheel symbol or gear-shaped item
+            • Cogitator-link (Smartphone with access to datasheets or manuals)
+        ---------------------------------------------------------------------------------
+
+        PRELUDE: Litany of Diagnosis
+
+        Before initiating repairs, chant the following:
+            "O Machine-Spirit, I beseech thee: reveal thy ailment,
+            that I may soothe thy electric soul and restore thy luminous glory."
+    """)
+    time.sleep(2)
+    left_cen_print("""
+        STEP I: Sanctified Observation
+
+        I. Verify the Symptoms:
+            • No power? Check for the light of the Machine-Spirit (standby LED).
+            • No image? Darkness may hide truth. Try audio input.
+            • Strange colors? Possible heresy in the signal processors.
+        II. Smite the Obvious Daemons
+            • Ensure the sacred power conduit (plug) is fully inserted.
+            • Confirm the machine’s cord is unfrayed and not gnawed by vermin (flesh-animals).
+            • Recite the Litany of Proper Input:
+                "HDMI 1, HDMI 2, AV... may the true path be lit on mine remote."
+    """)
+    time.sleep(2)
+    left_cen_print("""
+        STEP II: Opening the Reliquary
+
+        Unfasten the Screws of Holding (with caution):
+            • Lay the TV face-down on a soft surface (lest you crack its visage).
+            • Remove the rear casing with the Omni-key.
+            • Avoid static discharges! Ground yourself and speak
+              a brief calming hymn to the capacitor spirits.
+
+        STEP III: Techno-Divination (Diagnosis)
+
+        I: Examine the Power Supply Unit (PSU):
+            • Look for:
+                - Bulging capacitors (heretical bloating)
+                - Burn marks (signs of daemon infestation)
+            • Use the Auspex to check voltage output points.
+              Record and compare to sacred schematics.
+
+        II: Inspect the Main Logic Board:
+            • Loose connections? Ribbon cables not seated?
+              Reseat with care and a whispered benediction.
+            • Look for cracked solder joints under magnification —
+              a sign the Machine-Spirit cries for maintenance.
+
+    """)
+    time.sleep(2)
+    left_cen_print("""
+        STEP IV: Ritual of Restoration
+
+        I: Replace Faulty Components:
+            • If a capacitor is found unworthy, replace it with one
+              of equal or greater rating. Do not anger the Omnissiah
+              with substitutions from unblessed vendors.
+            • Ensure polarities are honored. The + and -
+              are sacred runes, not mere markings.
+
+        II: Purify with Isopropyl Alcohol (The Holy Solvent):
+            • Gently clean dust, corrosion, or spilled offerings (e.g., soda).
+
+        III: Reassemble with Reverence:
+            • Refasten the casing.
+            • Do not overtighten the screws—force is not faith.
+
+        STEP V: Resurrection Sequence
+        I: Return the Machine to Power:
+            • Plug into the sacred wall-altar.
+            • Press the power rune.
+            • Observe the response.
+
+        If the screen awakens: shout “Blessed be the Omnissiah!”
+        If it remains dark: repeat diagnostic litany,
+        or consider component replacement or a tech-exorcism.
+    """)
+    time.sleep(2)
+    left_cen_print("""
+        FINAL STEP: Offerings and Praise
+            • Light incense.
+            • Speak thanks to the Machine-Spirit.
+            • Record your process in the Book of Repair
+              for your Forge World archives.
+    """)
+    time.sleep(3)
+
+def phone_fix():
+    loading()
+    line_print("""
+        You dare lay uninitiated hands upon the sacred machine-spirit of this device?
+        Blasphemy... and yet, forgivable.
+
+        This... 'smartphone'... is primitive, yes, but not without worth.
+        I sense its frustration. The Omnissiah's spark still flickers within.
+        You must not fix it — you must commune with it. Placate its spirit.
+        Restore its harmony.
+
+        Let us anoint it with sacred oils. Then, and only then, We shall consult
+        the works of Magos Jerryrigos on the proper rites of Dataslate restoration.
+    """)
+    time.sleep(2)
+    line_print("""
+
+        +-------------------------------------------+
+        |   🛠️ Rituals of the Sacred Omnissiah: 🛠️   |
+        |   A Tech-Priest’s Guide to Phone Repair   |
+        +-------------------------------------------+
+        By Magos Technovatis, Binary Rank Sigma-23
+
+    """)
+    time.sleep(1)
+    left_cen_print("""
+        ---------------------------------------------------------------------------------
+        Required items:
+            • Red robe or towel-as-robe (for proper garb)
+            • A precision screwdriver set
+            • A suction cup for screen separation
+            • Anti-static wristband (blessed with grounding rites)
+            • Replacement parts (screen, battery, etc.)
+            • lumen-staff (optional, for dramatic lighting)
+            • Cogwheel symbol or gear-shaped item
+            • Incense (Optional but spiritually fortifying)
+        ---------------------------------------------------------------------------------
+
+        Introduction: Praise Be to the Omnissiah
+
+        "The Machine Spirit slumbers within.
+        It is our sacred duty to awaken it—without incurring its wrath."
+
+        In this sacred text, we shall explore the Rites of Maintenance and
+        Prayers of Diagnostics necessary to restore a damaged communication device,
+        known in Low Gothic as the smartphone. This guide balances reverent
+        incantation with practical steps for the uninitiated lay-servitor or junior Enginseer.
+    """)
+    time.sleep(2)
+    left_cen_print("""
+        STEP I: The Litany of Preparation
+
+        I: Clear your workspace
+            • Sanctify your bench. Remove food crumbs, heretical energy drinks, and other impure materials.
+
+        II: Power Down the Device
+            • Hold down the sigil (power button) until the glow fades.
+              Never work on an active spirit. That way lies madness.
+
+        STEP II: Rituals of Diagnosis
+
+        I: Observe Behavior
+            • Does it not charge?
+            • Does the screen remain black, despite entreaties?
+            • Does it speak only in crackling tones?
+
+        II: Perform Basic Blessings
+            • Try alternate charger cables.
+            • Clean the sacred port (charging port) with isopropyl
+              alcohol and a brush of purified bristles.
+        III: Invoke DFU Mode (iOS) / Recovery Mode (Android)
+            • Use these sacred modes to commune directly with the
+              device spirit for further diagnosis.
+    """)
+    time.sleep(2)
+    left_cen_print("""
+        STEP III: Disassembly of the Sacred Shell
+
+        I: Remove the Backplate or Screen
+            • Heat gently (use a heat gun or pad at low settings)
+              to loosen the machine’s binding adhesive.
+            • Use the suction cup and spudger to separate
+              the shell from the inner sanctum.
+
+        II: Disconnect the Power Nexus (Battery)
+            • Locate the battery connector and gently pry it up.
+            • DO NOT poke the battery.
+              The Machine Spirit is vengeful when punctured.
+
+        III: Document Your Progress
+            • Use pict-captures (photos) to record screw placement.
+              Not all screws are interchangeable—heresy lies in careless reassembly.
+
+        CHAPTER IV: Component Replacement Rituals
+
+        I: Replace the Screen
+            • Transfer earpiece, proximity sensor, and fingerprint modules as needed.
+            • Ensure ribbon cables are aligned like constellations of Mars.
+
+        II: Replace the Battery
+            • Use gentle leverage. If glued, apply heat to soften.
+            • Affix new battery using adhesive strips
+              blessed for conductivity and stability.
+
+        III: Other Repairs
+            • Charging port, speaker, and camera modules may
+              also be replaced following similar rites.
+    """)
+    time.sleep(2)
+    left_cen_print("""
+        CHAPTER V: Reassembly & Awakening
+
+        I: Reconnect All Cables
+            • Each flex cable is a neural conduit. Misalign one, and madness may ensue.
+
+        II: Screw Placement Must Be Precise
+            • Do not over-tighten. You are not forging a bolter.
+
+        III: Power On
+            • Hold the sacred sigil once more. If the screen lights,
+              utter the Canticle of Restoration:
+                  "Blessed be the circuits, rekindled. Blessed be the spirit, reawakened."
+
+        CHAPTER VI: Final Diagnostics & Purification
+
+        I: Run a full system check:
+            • Touchscreen responsiveness
+            • Charging
+            • Audio
+            • Camera
+            • Signal (Wi-Fi, cellular, etc.)
+
+        II: Perform software updates (the Digital Anointing).
+        III: Optional: Encase the device in a silicone purity seal
+            (a.k.a. a case) to prevent future damage.
+
+        ☠️ WARNING: Forbidden Rites
+            • Never puncture a lithium battery.
+            • Never mix up ribbon cables.
+            • Never attempt repairs while intoxicated by recaf or amasec.
+            • Do not pray to false repair deities such as "YouTube comments" without discernment.
+    """)
+    time.sleep(2)
+    left_cen_print("""
+
+
+        Closing Prayer
+
+        Machine Spirit, be thou appeased.
+        Your circuits rejoined, your energies restored.
+        May your signal bars be ever full, and your battery never low.
+    """)
+    time.sleep(3)
 
 def other_fix():
     loading()

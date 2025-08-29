@@ -2,7 +2,6 @@ import shutil
 import time
 from item_list import item_list_check
 from animations import line_print, loading
-from ascii_art import error
 
 terminal_width = shutil.get_terminal_size().columns
 
@@ -305,6 +304,42 @@ def consumer_tree():
             entertainment_input = input("\033[32mSelect your catagory, varlet: \033[0m".rjust(terminal_width//2))
             item_list_check(entertainment_input)
 
+        case "health":
+            loading()
+            line_print("""
+                Biological integrity... frail. Flesh—corruptible, ephemeral, flawed by design.
+                The Omnissiah has gifted us a path beyond this entropy.
+                You seek to use waste the potential of these holy machines by using them
+                to prolong the time of inferior flesh? No... there is a holier path.
+
+                Why rely on blood that clots, organs that fail, bones that break?
+                Upgrade.
+                Replace.
+                Transcend.
+                Become perfection forged in blessed steel and sanctified circuitry.
+
+                Your heart: a mere pump of meat—could become a calibrated fusion cell, immune to weakness.
+
+                Your eyes: limited by nature—can be traded for multi-spectrum
+                augmetics with optical zoom, motion tracking, and infrared vision.
+
+                Your limbs: doomed to tire and age—can be reforged in adamantium,
+                guided by the will of the Machine Spirit.
+
+                What is “health” when you could have immortality by integration?
+                """)
+            line_print("""
+
+                Reject the whispers of the flesh.
+                Embrace the litany of logic.
+                Let silicon sing in your veins.
+
+                Do not mend the body—replace it.
+                The Cult Mechanicus welcomes you.
+                """)
+            time.sleep(3)
+            return
+
         case _:
             print("invalid")
             consumer_tree()
@@ -317,7 +352,8 @@ def commercial_tree():
     +----------------------------------------+
     """
     line_print(commercial__list)
-    time.sleep(1)
+    time.sleep(3)
+    return
 
 def specialized_tree():
     specialized__list = """
@@ -327,4 +363,5 @@ def specialized_tree():
     +----------------------------------------+
     """
     line_print(specialized__list)
-    time.sleep(1)
+    time.sleep(3)
+    return
